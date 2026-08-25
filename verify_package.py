@@ -127,7 +127,7 @@ for doc in DOCS:
         rel = rel.rstrip("/")
         if rel.startswith(("http", "-")) or " " in rel: continue
         base = rel.split("/")[0]
-        if base not in ("model", "data", "figures", "ml", "cluster"): continue
+        if base not in ("model", "data", "ml", "cluster"): continue
         if "<" in rel or "*" in rel or "NN" in rel: continue   # placeholders
         if not os.path.exists(os.path.join(ROOT, rel)):
             docs_bad.append("%s: %s" % (doc, rel))
@@ -303,61 +303,32 @@ for dd, _, fs in os.walk(ROOT):
             box_hits.append(rel)
 check("ASCII separators only, no box-drawing glyphs", not box_hits, "; ".join(box_hits[:3]))
 
-# --- 16. each PNG companion shows what its PDF shows -------------------------
-# The PNGs in figures/ are rasterisations of the published PDFs, so the two cannot drift
-# apart. Needs pdftoppm (poppler) and Pillow; the check reports SKIP where either is absent.
-if shutil.which("pdftoppm"):
-    try:
-        from PIL import Image
-        import numpy as _np
-        Image.MAX_IMAGE_PIXELS = None
-        _fig = os.path.join(ROOT, "figures")
-        drift = []
-        for _f in sorted(os.listdir(_fig)):
-            if not _f.endswith(".pdf"):
-                continue
-            _png = os.path.join(_fig, _f[:-4] + ".png")
-            if not os.path.exists(_png):
-                continue
-            _B = Image.open(_png).convert("RGB")
-            _W = _B.width
-            for _dpi in (300, 400, 600, 800):
-                subprocess.run(["pdftoppm", "-f", "1", "-l", "1", "-png", "-singlefile",
-                                "-r", str(_dpi), os.path.join(_fig, _f), "/tmp/_vp_chk"],
-                               capture_output=True)
-                _A = Image.open("/tmp/_vp_chk.png")
-                if _A.width >= _W:
-                    break
-            _A = _A.convert("RGB").resize((_W, round(_A.height * _W / _A.width)), Image.LANCZOS)
-            _h = min(_A.height, _B.height)
-            if _np.abs(_np.asarray(_A, float)[:_h] - _np.asarray(_B, float)[:_h]).mean() > 1.0:
-                drift.append(_f[:-4])
-        check("each PNG matches its PDF", not drift, "; ".join(drift[:3]))
-    except ImportError:
-        print("  %-52s SKIP  Pillow not installed" % "each PNG matches its PDF")
-else:
-    print("  %-52s SKIP  pdftoppm not installed" % "each PNG matches its PDF")
-
 # --- every figure named in FIGURE_DATA.md exists, and its data with it --------
 fig_bad = []
 _fd = os.path.join(ROOT, "FIGURE_DATA.md")
 if os.path.exists(_fd):
+    seen = set()
     for line in open(_fd, encoding="utf-8"):
         if not line.startswith("| ") or line.startswith("| figure") or set(line.strip()) <= set("|- "):
             continue
         cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) < 5:
+        if len(cells) < 4:
             continue
-        for f in [x.strip() for x in cells[1].split(",") if x.strip() and x.strip() != "\u2014"]:
-            if not os.path.exists(os.path.join(ROOT, "figures", f)):
-                fig_bad.append("figure file %s" % f)
-        for p in [x.strip() for x in cells[3].split(",") if x.strip().startswith("data/")]:
-            p = p.split(" ")[0].rstrip("/")
-            if not os.path.exists(os.path.join(ROOT, p)):
-                fig_bad.append("data path %s" % p)
-    check("FIGURE_DATA.md rows all resolve", not fig_bad, "; ".join(fig_bad[:3]))
+        seen.add(cells[0])
+        for col in (cells[2], cells[3]):
+            for p_ in re.findall(r"data/[A-Za-z0-9_./*-]+", col):
+                if "*" in p_:                       # a glob: check the directory holding it
+                    p_ = os.path.dirname(p_)
+                if p_ and not os.path.exists(os.path.join(ROOT, p_.rstrip("/"))):
+                    fig_bad.append("data path %s" % p_)
+    # every manuscript figure must be accounted for, schematics included
+    expected = {str(n) for n in range(1, 28)} | {"S1"}
+    missing = sorted(expected - seen, key=lambda s: (s == "S1", s))
+    if missing:
+        fig_bad.append("no row for figure(s) " + ", ".join(missing))
+    check("FIGURE_DATA.md accounts for every figure", not fig_bad, "; ".join(fig_bad[:3]))
 else:
-    check("FIGURE_DATA.md rows all resolve", False, "FIGURE_DATA.md missing")
+    check("FIGURE_DATA.md accounts for every figure", False, "FIGURE_DATA.md missing")
 
 # --- no internal version labels in shipped text ------------------------------
 import re as _re

@@ -28,7 +28,9 @@ EXCLUDE_RELPATHS = set()
 
 def payload_files(root):
     for d, dirs, fs in os.walk(root):
-        dirs[:] = sorted(x for x in dirs if x != "__pycache__")
+        # .git is version-control bookkeeping, not payload, and its contents differ between
+        # any two clones of the same tree.
+        dirs[:] = sorted(x for x in dirs if x not in ("__pycache__", ".git"))
         for f in sorted(fs):
             if f in EXCLUDE_NAMES or f.endswith(".pyc"):
                 continue
@@ -75,7 +77,7 @@ def main():
         return 1 if n else 0
     with open(out, "w", encoding="utf-8") as fh:
         fh.write("# Whole-payload SHA-256 manifest for this package.\n")
-        fh.write("# Covers every file except this manifest, .DS_Store and .pyc (see make_tree_manifest.py).\n")
+        fh.write("# Covers every file except this manifest, .git, .DS_Store and .pyc (see make_tree_manifest.py).\n")
         fh.write("# Verify with:  python3 make_tree_manifest.py --check\n")
         fh.write("# payload-digest %s\n" % whole)
         for h, rel in per_file:

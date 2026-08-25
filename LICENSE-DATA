@@ -2,9 +2,9 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 Copyright (c) 2026 M. A. Abdelghany, Z. Ngan, D. Qerimi
 
-This license covers the data and figures that are our own output: everything
-under data/ and figures/, and the trained model weights under ml/, EXCEPT the
-third-party-derived material listed in THIRD_PARTY_DATA.md. That material is
+This license covers the data that is our own output: everything under data/,
+and the trained model weights under ml/, EXCEPT the third-party-derived
+material listed in THIRD_PARTY_DATA.md. That material is
 carved out and is not licensed by this file. At the time of writing the carve-out
 is data/benchmark_0d_reference/ and data/measurements/, both digitized from
 previously published figures.

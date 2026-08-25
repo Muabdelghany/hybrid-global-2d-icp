@@ -7,9 +7,9 @@ Data and model code accompanying:
 > M. A. Abdelghany, Z. Ngan, D. Qerimi. *Journal of Physics D: Applied Physics.*
 
 If you have read the paper and want to check a number, look at a curve more closely, or replot
-something your own way, this repository has what you need. Every figure in the paper is here
-alongside the numbers behind it, together with the solver that produced them and the trained
-surrogate weights.
+something your own way, this repository has what you need. It holds the numbers behind every
+figure, the solver that produced them, and the trained surrogate weights. The figures themselves
+are in the paper, so they are not duplicated here.
 
 ---
 
@@ -30,17 +30,15 @@ results the figures were drawn from, not summaries of them.
 takes a few minutes on a single core. `model/VERIFICATION_CASE.json` pins one such point exactly,
 so you can confirm a local build reproduces our numbers before trusting it on anything else.
 
-This repository deliberately does not include the plotting scripts. The figures as published are
-here, and the numbers behind them are here; how you choose to draw them is up to you.
+This repository deliberately holds data rather than plots. The scripts that drew the published
+figures are not included, and neither are the figure files, which you already have in the paper.
+What is here is what they were drawn from, so you can check it or redraw it however you prefer.
 
 ---
 
 ## What is in it
 
 ```
-figures/          the 28 published figures, named by their manuscript number
-                    figure01.pdf … figure27.pdf, figureS1.pdf, plus PNG companions
-
 data/
   plotted_values/   one directory per figure: the plotted numbers as CSV
   reference_case/   the published reference solve: 1000 W, 10 mTorr, 30% Ar, bias on
@@ -69,13 +67,13 @@ cluster/          the batch scripts the studies were submitted with
 
 ---
 
-## The figures and their data
+## Which figure draws on what
 
 `FIGURE_DATA.md` is the index. In summary:
 
 | figure | what you get |
 |---|---|
-| 1, 4, 5, 19 | schematics and flowcharts; no data behind them |
+| 1, 4, 5, 19 | schematics and flowcharts; nothing behind them to publish |
 | 2, 3 | the 0D benchmark: our solve in `data/benchmark_0d_model/`, the published comparison in `data/benchmark_0d_reference/`, both flat CSV |
 | 6, 9, 10 | two-dimensional field maps; the plotted quantity *is* the `.npy` array in `data/reference_case/` |
 | 7, 8, 11–18, 20–27, S1 | CSV of the plotted curves in `data/plotted_values/figureNN/` |
@@ -197,8 +195,8 @@ manuscript itself reports.
 
 ## Licence and third-party material
 
-Code is released under the MIT licence (`LICENSE`). Data and figures are released under
-CC BY 4.0 (`LICENSE-DATA`). Attribution for material that originates elsewhere, including the
+Code is released under the MIT licence (`LICENSE`). The data and the trained weights are
+released under CC BY 4.0 (`LICENSE-DATA`). Attribution for material that originates elsewhere, including the
 digitized measurement traces and the cross-section source behind the Boltzmann calculations, is
 in `THIRD_PARTY_DATA.md`. If you use any of it, cite the original source rather than this
 repository.
