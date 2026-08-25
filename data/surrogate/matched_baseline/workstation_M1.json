@@ -1,0 +1,17 @@
+{
+ "grid": "Nr=50 Nz=80 (production)",
+ "n_active_cells": 1669,
+ "n_conditions": 20,
+ "n_iter": 80,
+ "rate_mode": "legacy",
+ "mean_s": 7.412521111965179,
+ "std_s": 0.38762269879935696,
+ "min_s": 7.117139101028442,
+ "max_s": 8.76648497581482,
+ "median_s": 7.242324113845825,
+ "machine": "apple-m1-workstation",
+ "processor": "arm",
+ "dedicated": true,
+ "omp_num_threads": "4",
+ "note": "standalone chemistry-transport solver at the production grid, dedicated; matched to the 1780-cell surrogate inference"
+}

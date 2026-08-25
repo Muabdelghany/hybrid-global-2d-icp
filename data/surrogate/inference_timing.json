@@ -1,0 +1,23 @@
+{
+ "n_passes": 200,
+ "n_warmup": 20,
+ "ensemble_size": 5,
+ "batch_size": 1780,
+ "batch_definition": "single representative operating point (inside-mask cells of one validation case)",
+ "ms_per_eval_mean": 7.046473018708639,
+ "ms_per_eval_std": 0.20130885341039342,
+ "eval_machine_id": "cluster-gpu-node",
+ "speedup_vs_legacy_solver": 1750.345255905605,
+ "provenance": {
+  "device": "cuda (NVIDIA A100)",
+  "synchronization": "torch.cuda.synchronize() before each timed-pass stop",
+  "n_warmup": 20,
+  "n_passes": 200,
+  "n_replicates": 1,
+  "statistic": "mean over 200 timed passes after 20 warmup (single replicate; the workstation record uses the median of 5 such replicates)",
+  "software": "torch 2.8.0+cu128 (pytorch-conda/2.8)",
+  "baseline_definition": "standalone chemistry-transport solver, the cluster CPU 12.33 s, 50x80 production grid over the 1669-cell active mask, dedicated cores (matched_baseline/delta_cpu.json)",
+  "note": "measured numeric fields unchanged; this block is descriptive metadata added 2026-07-22 to match the workstation record's detail"
+ },
+ "baseline_supersession": "recomputed 2026-07-22 against the matched per-platform baseline; supersedes the retired 7.76 s single-grid contended benchmark (former speedup 1101.3). Solver active mask 1669 cells; inference batch 1780 cells (grid-matched, not identical mask)."
+}

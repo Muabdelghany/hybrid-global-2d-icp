@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the accompanying paper."
+title: "A hybrid global-2D model for SF6/Ar inductively coupled plasma etchers"
+abstract: >-
+  Model code, solver output and trained neural-network surrogate weights
+  accompanying a study of a self-consistent hybrid global-2D model for SF6/Ar
+  inductively coupled plasma etchers with neural-network surrogate acceleration.
+  Source code is under MIT; data, figures and trained weights are under CC BY 4.0,
+  except third-party-derived material listed in THIRD_PARTY_DATA.md.
+authors:
+  - family-names: Abdelghany
+    given-names: "Muhammad A."
+    orcid: "https://orcid.org/0000-0002-7351-5262"
+  - family-names: Ngan
+    given-names: Zachariah
+    orcid: "https://orcid.org/0000-0002-2434-2043"
+  - family-names: Qerimi
+    given-names: Dren
+    orcid: "https://orcid.org/0000-0001-5753-4474"
+license:
+  - MIT
+  - CC-BY-4.0
+keywords:
+  - inductively coupled plasma
+  - plasma etching
+  - SF6
+  - plasma chemistry
+  - neural network surrogate
+preferred-citation:
+  type: article
+  title: >-
+    A self-consistent hybrid global-2D model for SF6/Ar inductively coupled
+    plasma etchers with neural-network surrogate acceleration
+  authors:
+    - family-names: Abdelghany
+      given-names: "Muhammad A."
+      orcid: "https://orcid.org/0000-0002-7351-5262"
+    - family-names: Ngan
+      given-names: Zachariah
+      orcid: "https://orcid.org/0000-0002-2434-2043"
+    - family-names: Qerimi
+      given-names: Dren
+      orcid: "https://orcid.org/0000-0001-5753-4474"
+  journal: "Journal of Physics D: Applied Physics"

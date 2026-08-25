@@ -1,0 +1,65 @@
+{
+  "method": "Production-closure recompute: bias-on gamma_Al sweep at f_e_bias = 1.0 (the gfe*_on runs in grid/) plus the calibrated gamma_Al = 0.155 point; centre nF[0,0] and windowed drop to 7.6 cm on the tanh beta_r = 1.2 mesh, the same metric as regen_fig13",
+  "generated": "2026-08-24",
+  "closure": "production flag set: mode=legacy, te_closure=energy_transport, outer loop, per-cell rates, depleted attachment, ec_clip_wide, ne_cap 1e20, reconciled rates, bias_closure=f_e_bias with f_e_bias=1.0; Te_avg ~3.2 eV at this operating point",
+  "mettler": {
+    "90pct_SF6_bias_on": {
+      "F_centre_m3": 3.774e+20,
+      "drop_pct": 74.8
+    }
+  },
+  "paper_value_gamma_Al": 0.155,
+  "tradeoff": {
+    "90pct_SF6_bias_on": [
+      {
+        "gamma_Al": 0.06,
+        "F_centre_m3": 3.89e+20,
+        "mag_err_pct": 3.1,
+        "drop_pct": 41.5,
+        "F_drop_pct_wall_summary": 52.1
+      },
+      {
+        "gamma_Al": 0.1,
+        "F_centre_m3": 3.372e+20,
+        "mag_err_pct": -10.6,
+        "drop_pct": 51.1,
+        "F_drop_pct_wall_summary": 64.3
+      },
+      {
+        "gamma_Al": 0.14,
+        "F_centre_m3": 3.107e+20,
+        "mag_err_pct": -17.7,
+        "drop_pct": 57.1,
+        "F_drop_pct_wall_summary": 71.9
+      },
+      {
+        "gamma_Al": 0.155,
+        "F_centre_m3": 3.037e+20,
+        "mag_err_pct": -19.5,
+        "drop_pct": 58.9,
+        "F_drop_pct_wall_summary": 74.0
+      },
+      {
+        "gamma_Al": 0.18,
+        "F_centre_m3": 2.942e+20,
+        "mag_err_pct": -22.0,
+        "drop_pct": 61.4,
+        "F_drop_pct_wall_summary": 77.0
+      },
+      {
+        "gamma_Al": 0.24,
+        "F_centre_m3": 2.783e+20,
+        "mag_err_pct": -26.3,
+        "drop_pct": 65.8,
+        "F_drop_pct_wall_summary": 82.1
+      },
+      {
+        "gamma_Al": 0.32,
+        "F_centre_m3": 2.647e+20,
+        "mag_err_pct": -29.9,
+        "drop_pct": 69.7,
+        "F_drop_pct_wall_summary": 86.5
+      }
+    ]
+  }
+}

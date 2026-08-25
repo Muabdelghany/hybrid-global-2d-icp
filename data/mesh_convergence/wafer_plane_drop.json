@@ -1,0 +1,43 @@
+{
+  "condition": "700 W / 10 mTorr / pure SF6 (design baseline)",
+  "metric": "F_drop_pct_window_7p6cm (wafer-plane center-to-edge drop over the r <= 7.6 cm measurement window; plotted series). F_drop_pct_wall (full-domain, to the chamber wall) is carried alongside.",
+  "metric_note": "Both metrics copied from mesh_convergence_v2.json per grid under unambiguous keys; the plotted series is the measurement-window metric, matching the Fig 18 caption and the validation convention.",
+  "provenance": "Wafer-plane [F] drop from the mesh-convergence study; see grid_study.json for the four-grid results and grid_study.md for the summary. The study ran on a separate solver checkout, noted there.",
+  "grid_converged_value_pct": 59.69,
+  "grid_converged_note": "finest-grid (200x320) window value, not an extrapolation",
+  "production_grid": "50x80",
+  "grids": [
+    {
+      "grid": "25x40",
+      "Nr": 25,
+      "Nz": 40,
+      "cells": 1000,
+      "F_drop_pct_window_7p6cm": 60.16,
+      "F_drop_pct_wall": 74.38
+    },
+    {
+      "grid": "50x80",
+      "Nr": 50,
+      "Nz": 80,
+      "cells": 4000,
+      "F_drop_pct_window_7p6cm": 58.98,
+      "F_drop_pct_wall": 74.1
+    },
+    {
+      "grid": "100x160",
+      "Nr": 100,
+      "Nz": 160,
+      "cells": 16000,
+      "F_drop_pct_window_7p6cm": 59.32,
+      "F_drop_pct_wall": 74.25
+    },
+    {
+      "grid": "200x320",
+      "Nr": 200,
+      "Nz": 320,
+      "cells": 64000,
+      "F_drop_pct_window_7p6cm": 59.69,
+      "F_drop_pct_wall": 74.57
+    }
+  ]
+}

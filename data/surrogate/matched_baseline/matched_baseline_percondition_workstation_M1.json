@@ -1,0 +1,201 @@
+{
+ "grid": "Nr=50 Nz=80 (production)",
+ "n_active_cells": 1669,
+ "surrogate_inference_cells": 1780,
+ "grid_match_note": "same 50x80 grid; solver active mask 1669 cells vs surrogate inference batch 1780 cells (grid-matched, not identical mask)",
+ "n_conditions": 20,
+ "n_iter": 80,
+ "under_relaxation_w": 0.12,
+ "rate_mode": "legacy",
+ "mean_s": 7.3535973072052006,
+ "std_s": 0.27145722226515195,
+ "min_s": 7.072466135025024,
+ "max_s": 8.42113733291626,
+ "median_s": 7.306521058082581,
+ "per_condition": [
+  {
+   "P_rf_W": 200,
+   "p_mTorr": 3,
+   "frac_Ar": 0.0,
+   "time_s": 7.529827117919922,
+   "F_drop_pct": 74.3749578984188
+  },
+  {
+   "P_rf_W": 300,
+   "p_mTorr": 5,
+   "frac_Ar": 0.0,
+   "time_s": 7.325748920440674,
+   "F_drop_pct": 74.18111042461743
+  },
+  {
+   "P_rf_W": 500,
+   "p_mTorr": 7,
+   "frac_Ar": 0.0,
+   "time_s": 7.122912168502808,
+   "F_drop_pct": 73.76199726722454
+  },
+  {
+   "P_rf_W": 700,
+   "p_mTorr": 10,
+   "frac_Ar": 0.0,
+   "time_s": 7.278905153274536,
+   "F_drop_pct": 73.68781830339893
+  },
+  {
+   "P_rf_W": 1000,
+   "p_mTorr": 15,
+   "frac_Ar": 0.0,
+   "time_s": 7.072466135025024,
+   "F_drop_pct": 73.67952784813134
+  },
+  {
+   "P_rf_W": 200,
+   "p_mTorr": 10,
+   "frac_Ar": 0.1,
+   "time_s": 7.200460195541382,
+   "F_drop_pct": 74.97387134519732
+  },
+  {
+   "P_rf_W": 500,
+   "p_mTorr": 10,
+   "frac_Ar": 0.25,
+   "time_s": 7.2935121059417725,
+   "F_drop_pct": 73.76995818845612
+  },
+  {
+   "P_rf_W": 700,
+   "p_mTorr": 10,
+   "frac_Ar": 0.5,
+   "time_s": 7.319530010223389,
+   "F_drop_pct": 72.30534039029372
+  },
+  {
+   "P_rf_W": 1000,
+   "p_mTorr": 5,
+   "frac_Ar": 0.1,
+   "time_s": 7.329413890838623,
+   "F_drop_pct": 71.20156706919502
+  },
+  {
+   "P_rf_W": 1200,
+   "p_mTorr": 20,
+   "frac_Ar": 0.5,
+   "time_s": 7.3262619972229,
+   "F_drop_pct": 72.55425329671816
+  },
+  {
+   "P_rf_W": 300,
+   "p_mTorr": 3,
+   "frac_Ar": 0.05,
+   "time_s": 7.25771689414978,
+   "F_drop_pct": 73.54583458834425
+  },
+  {
+   "P_rf_W": 400,
+   "p_mTorr": 8,
+   "frac_Ar": 0.15,
+   "time_s": 7.178084135055542,
+   "F_drop_pct": 74.02219276361608
+  },
+  {
+   "P_rf_W": 600,
+   "p_mTorr": 12,
+   "frac_Ar": 0.3,
+   "time_s": 7.144358158111572,
+   "F_drop_pct": 73.61660171094671
+  },
+  {
+   "P_rf_W": 800,
+   "p_mTorr": 15,
+   "frac_Ar": 0.4,
+   "time_s": 7.270587682723999,
+   "F_drop_pct": 73.19129183117417
+  },
+  {
+   "P_rf_W": 900,
+   "p_mTorr": 18,
+   "frac_Ar": 0.45,
+   "time_s": 7.464036703109741,
+   "F_drop_pct": 73.1229782981692
+  },
+  {
+   "P_rf_W": 1100,
+   "p_mTorr": 7,
+   "frac_Ar": 0.2,
+   "time_s": 8.42113733291626,
+   "F_drop_pct": 71.47069572107928
+  },
+  {
+   "P_rf_W": 350,
+   "p_mTorr": 20,
+   "frac_Ar": 0.0,
+   "time_s": 7.3648951053619385,
+   "F_drop_pct": 75.01356467581442
+  },
+  {
+   "P_rf_W": 750,
+   "p_mTorr": 6,
+   "frac_Ar": 0.35,
+   "time_s": 7.259912967681885,
+   "F_drop_pct": 71.59104303267301
+  },
+  {
+   "P_rf_W": 550,
+   "p_mTorr": 14,
+   "frac_Ar": 0.1,
+   "time_s": 7.423356294631958,
+   "F_drop_pct": 74.28056212320635
+  },
+  {
+   "P_rf_W": 1050,
+   "p_mTorr": 9,
+   "frac_Ar": 0.25,
+   "time_s": 7.488823175430298,
+   "F_drop_pct": 72.05008044900754
+  }
+ ],
+ "convergence_certificate": [
+  {
+   "P_rf_W": 200,
+   "p_mTorr": 3,
+   "frac_Ar": 0.0,
+   "F_drop_pct": {
+    "40": 74.37731428285238,
+    "80": 74.3749578984188,
+    "120": 74.37469659140905
+   },
+   "nF_rel_change_40_80": 0.011472336814881726,
+   "nF_rel_change_80_120": 0.00011700776847216103
+  },
+  {
+   "P_rf_W": 700,
+   "p_mTorr": 10,
+   "frac_Ar": 0.0,
+   "F_drop_pct": {
+    "40": 73.75422650587699,
+    "80": 73.68781830339893,
+    "120": 73.68689479359183
+   },
+   "nF_rel_change_40_80": 0.004091502154199098,
+   "nF_rel_change_80_120": 9.925401002133387e-05
+  },
+  {
+   "P_rf_W": 1200,
+   "p_mTorr": 20,
+   "frac_Ar": 0.5,
+   "F_drop_pct": {
+    "40": 72.78688472990915,
+    "80": 72.55425329671816,
+    "120": 72.55087707850969
+   },
+   "nF_rel_change_40_80": 0.05907153764347197,
+   "nF_rel_change_80_120": 0.0013139220337644347
+  }
+ ],
+ "convergence_note": "nF-stability check at 3 sampled conditions (not a universal convergence proof): the largest relative nF field change from iter 80 to 120 is 1.314e-03 (about 0.13%, below 1.4e-3); iteration-intrinsic and platform-independent",
+ "machine": "apple-m1-workstation",
+ "processor": "arm",
+ "dedicated": true,
+ "omp_num_threads": "4",
+ "headline_reference": "workstation_M1.json (7.41 s, 872x) is the manuscript baseline; this instrumented rerun reproduces it within run-to-run noise (7.35 s, <1%)."
+}

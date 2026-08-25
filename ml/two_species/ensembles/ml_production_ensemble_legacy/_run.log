@@ -1,0 +1,53 @@
+============================================================
+  Production Ensemble Training
+  Winner: E3_separate_heads
+  Architecture: SeparateHeadsMLP (shared trunk + per-species heads)
+  nF RMSE from sweep: 0.00542+/-0.00069
+  Device: mps (MPS)
+============================================================
+  Train: 332860 pts, Val: 58740 pts
+  === STARTING MODEL 0/5 ===
+    M0 [    0] t=0.12475 v=0.01224
+    M0 [  400] t=0.00003 v=0.00018
+    M0 [  800] t=0.00001 v=0.00015
+    M0 [ 1200] t=0.00001 v=0.00017
+    M0 [ 1600] t=0.00001 v=0.00017
+  === FINISHED MODEL 0/5 | best val = 0.000149 ===
+  === STARTING MODEL 1/5 ===
+    M1 [    0] t=0.11304 v=0.00815
+    M1 [  400] t=0.00002 v=0.00014
+    M1 [  800] t=0.00001 v=0.00011
+    M1 [ 1200] t=0.00001 v=0.00010
+    M1 [ 1600] t=0.00000 v=0.00010
+  === FINISHED MODEL 1/5 | best val = 0.000099 ===
+  === STARTING MODEL 2/5 ===
+    M2 [    0] t=0.11584 v=0.01153
+    M2 [  400] t=0.00002 v=0.00016
+    M2 [  800] t=0.00001 v=0.00014
+    M2 [ 1200] t=0.00001 v=0.00013
+    M2 [ 1600] t=0.00001 v=0.00013
+  === FINISHED MODEL 2/5 | best val = 0.000121 ===
+  === STARTING MODEL 3/5 ===
+    M3 [    0] t=0.10241 v=0.01076
+    M3 [  400] t=0.00003 v=0.00013
+    M3 [  800] t=0.00001 v=0.00014
+    M3 [ 1200] t=0.00001 v=0.00014
+    M3 [ 1600] t=0.00000 v=0.00014
+  === FINISHED MODEL 3/5 | best val = 0.000109 ===
+  === STARTING MODEL 4/5 ===
+    M4 [    0] t=0.12464 v=0.01144
+    M4 [  400] t=0.00003 v=0.00011
+    M4 [  800] t=0.00001 v=0.00011
+    M4 [ 1200] t=0.00001 v=0.00011
+    M4 [ 1600] t=0.00000 v=0.00011
+  === FINISHED MODEL 4/5 | best val = 0.000099 ===
+  === ALL MODELS COMPLETE (48052s) ===
+
+============================================================
+  RESULTS: surrogate_lxcat_v4_arch
+  Winner: E3_separate_heads (SeparateHeadsMLP (shared trunk + per-species heads))
+  nF RMSE:  0.00448 (v3: 0.0112, v4: 0.0029)
+  nSF6 RMSE: 0.00392 (v3: 0.0081, v4: 0.0027)
+  nF improvement vs v3: 60.0%
+  nF gap to v4: 1.54x
+============================================================

@@ -1,0 +1,92 @@
+# Phase 1 Merged Configuration: EM + SF6 Chemistry on IPI ICP Geometry
+# Full-size IPI ICP reactor (50x80 grid, 1000W, 10 mTorr, Mettler benchmark)
+#
+# Reactor specifications (industrial ICP etcher, IPI ICP reference geometry):
+#   Qz cylinder radius: 38 mm, Qz wall thickness: 0.5 mm
+#   ICP coil radius: 40.5 mm, 6 coil turns, 10 mm pitch
+#   HF 40 MHz (ICP), LF 13 MHz (bias), Impedance: 50 Ohm
+#   6-inch wafer, ESC with He cooling
+#
+# Architectural note (Phase-1 revision):
+#   The coupling efficiency eta is NOT prescribed.  It emerges from the
+#   coil-plasma transformer circuit equation:
+#     I_peak = sqrt( 2 P_rf / (R_coil + R_plasma) )
+#     eta    = R_plasma / (R_coil + R_plasma)
+#   where R_plasma is the Ohmic-integral loading resistance updated each
+#   Picard iteration.  R_coil and L_coil are literature defaults from
+#   Lieberman 2005 Ch. 12 (see docs/ASSUMED_PARAMETERS.md).
+
+circuit:
+  source_power: 1000         # HF ICP power [W]
+  source_frequency: 40.0e6   # ICP frequency [Hz] (40 MHz per reactor specification)
+  impedance: 50              # RF supply characteristic impedance [Ohm] (diagnostic only)
+  R_coil: 0.8                # Coil wire resistance [Ohm]  (LIT: Lieberman 2005 Eq 12.2.19)
+  L_coil: 2.0e-6             # Coil self-inductance [H]    (LIT: Lieberman 2005 §12.2)
+
+bias:
+  enabled: true              # Toggle capacitive wafer-bias sheath model (m12)
+  P_bias_W: 200              # RF bias power delivered to the wafer [W]
+  f_ion_to_gas: 0.5          # Fraction of sheath ion KE -> neutral heating  (LIT: Turner 2013)
+  A_wafer_eff: 0.01767       # Effective wafer area [m^2] = pi*(0.075)^2     (6-inch wafer, 75 mm radius)
+  L_exp_mm: 30               # Decay length of ion-heated plasma glow [mm]
+  lambda_exp: 3.20           # Calibrated on Mettler 90% SF6 bias-on (gives x1.61 vs target x1.60). Blind tested at 30% SF6: x1.88 vs target x2.15 (within +/-20%).
+  m_ion_amu_dominant: 127    # SF5+ dominant ion mass (amu) — re-weighted internally by composition
+
+geometry:
+  coil_radius: 1.0e-3        # Coil wire radius [m] (2mm diameter)
+  num_coils: 6               # Number of coil turns modelled
+  coil_start_z: 0.145        # z position of first coil above wafer [m] (y=145mm)
+  coil_spacing: 0.010        # Spacing between coils [m] (10 mm pitch)
+  coil_r_position: 0.0405    # Radial position of coil [m] (40.5 mm per reactor specification)
+  coil_start_y: 0.145        # Alias for M01-M04 compat (y=145mm)
+  left_coil_x: 0.0405        # r = R_coil (40.5 mm)
+  right_coil_x: 0.0405       # Same (axisymmetric)
+
+reactor_geometry:
+  R_icp: 0.038               # ICP source inner radius (Qz cylinder) [m]
+  R_proc: 0.105              # Processing region radius [m]
+  R_wafer: 0.075             # Wafer radius [m] (6-inch Si, matches A_wafer_eff = pi*0.075^2 = 0.01767 m^2)
+  L_icp: 0.150               # ICP source height [m] (150 mm: y=50 to y=200)
+  L_proc: 0.050              # Processing region height [m]
+  L_apt: 0.002               # Aperture gap [m]
+  quartz_wall_thickness: 0.0005  # Quartz wall thickness [m] (0.5 mm per drawing)
+  Nr: 50                     # Radial cells
+  Nz: 80                     # Axial cells
+  beta_r: 1.2                # Radial mesh stretching
+  beta_z: 1.0                # Axial (uniform)
+
+operating:
+  pressure_mTorr: 10
+  frac_Ar: 0.3               # 70% SF6 (Mettler Fig 4.14 / 4.17 primary benchmark)
+  Q_sccm: 100
+  Tgas: 313                  # Gas temperature [K]
+
+wall_chemistry:
+  gamma_quartz: 0.001
+  gamma_Al: 0.18             # Calibrated to 74% [F] drop (Mettler 2025, 90% SF6 branch)
+  gamma_wafer: 0.025
+  gamma_window: 0.001
+
+coupling:
+  max_picard_iter: 20
+  picard_tol: 0.02           # Relative ne convergence tolerance
+  under_relax_ne: 0.3
+  under_relax_Te: 0.3
+  inner_chem_iter: 60        # Inner chemistry iterations per Picard step
+  inner_chem_relax: 0.12
+  rerun_fdtd_every: 3        # Re-run FDTD every N Picard iterations to refresh E-field for drifting sigma
+
+simulation:
+  fdtd_rf_cycles: 5          # RF cycles for FDTD steady-state amplitude convergence (bumped from 2 per ultrareview)
+  max_iter: 10000
+  tolerance: 1.0e-2
+  relaxation_omega: 1.8
+  testing_mode: false
+
+grid:
+  x_min: 0
+  x_max: 0.105
+  y_min: 0
+  y_max: 0.220
+  dx: 2.0e-3
+  dy: 3.0e-3

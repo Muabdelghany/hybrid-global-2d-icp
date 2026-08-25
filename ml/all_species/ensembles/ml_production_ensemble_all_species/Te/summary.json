@@ -1,0 +1,29 @@
+{
+  "species": "Te",
+  "label": "surrogate_lxcat_v4_arch_Te",
+  "winner_experiment": "E3_separate_heads (single-head)",
+  "architecture": "SingleHeadMLP (3\u00d7128 trunk + skip + 2\u00d764 head)",
+  "training_recipe": "v4 per-species (physics reg + bias init + 2000 epochs)",
+  "device": "cuda",
+  "n_cases": 220,
+  "n_ensemble": 5,
+  "n_epochs": 2000,
+  "train_time_s": 2871.7537083625793,
+  "ensemble_vals": [
+    0.7415969371795654,
+    0.694568932056427,
+    0.7399342060089111,
+    0.6996777653694153,
+    0.7304317951202393
+  ],
+  "ens_mean": 0.7212419271469116,
+  "ens_std": 0.02012283844846166,
+  "metrics": {
+    "rmse": 0.00938389077782631,
+    "mae": 0.0012434023665264249,
+    "max_err": 0.33185720443725586,
+    "ens_spread": 0.0010979233775287867
+  },
+  "rate_source": "lxcat",
+  "output_bias_init": 0.47790461778640747
+}

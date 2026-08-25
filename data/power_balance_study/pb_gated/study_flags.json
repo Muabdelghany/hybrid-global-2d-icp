@@ -1,0 +1,1 @@
+{"coupling.max_picard_iter": 120, "coupling.power_balance_relax": 0.5, "coupling.max_outer": 8, "coupling.pb_eta_gated": true, "coupling.pb_energy_tol": 0.05}

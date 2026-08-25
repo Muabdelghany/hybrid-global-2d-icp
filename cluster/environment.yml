@@ -1,0 +1,17 @@
+name: dtpm-lxcat
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy>=1.24
+  - scipy>=1.10
+  - matplotlib>=3.7
+  - h5py>=3.8
+  - pyyaml
+  - pytorch>=2.0
+  - pytorch-cuda=12.1
+  - pip:
+      - pytest

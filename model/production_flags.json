@@ -1,0 +1,12 @@
+{
+  "coupling.te_closure": "energy_transport",
+  "coupling.outer_loop": true,
+  "chemistry.per_cell_rates": true,
+  "chemistry.depleted_attachment": true,
+  "chemistry.ec_clip_wide": true,
+  "chemistry.ne_cap_0D": 1e20,
+  "chemistry.reconciled_rates": true,
+  "wall_chemistry.gamma_Al": 0.155,
+  "bias.closure": "f_e_bias",
+  "bias.f_e_bias": 1.0
+}

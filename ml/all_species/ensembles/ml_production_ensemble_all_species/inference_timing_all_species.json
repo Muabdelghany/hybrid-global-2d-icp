@@ -1,0 +1,142 @@
+{
+ "per_species": {
+  "nSF6": {
+   "ms_per_eval_mean": 15.254762065596879,
+   "ms_per_eval_std": 0.9571859485917141,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF5": {
+   "ms_per_eval_mean": 14.504057803424075,
+   "ms_per_eval_std": 0.9442077226373036,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF4": {
+   "ms_per_eval_mean": 24.26990797976032,
+   "ms_per_eval_std": 33.7303408788887,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF3": {
+   "ms_per_eval_mean": 24.671637424034998,
+   "ms_per_eval_std": 8.024280779359863,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF2": {
+   "ms_per_eval_mean": 12.156769034918398,
+   "ms_per_eval_std": 0.5030265332095477,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF": {
+   "ms_per_eval_mean": 12.121096381451935,
+   "ms_per_eval_std": 0.5497340352703779,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nF": {
+   "ms_per_eval_mean": 11.984582436271012,
+   "ms_per_eval_std": 0.4253217840590504,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nF2": {
+   "ms_per_eval_mean": 11.974104139953852,
+   "ms_per_eval_std": 0.5318287878043898,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nS": {
+   "ms_per_eval_mean": 12.067594157997519,
+   "ms_per_eval_std": 0.5269243788780104,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_ne": {
+   "ms_per_eval_mean": 12.372635081410408,
+   "ms_per_eval_std": 0.9365433504067575,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_n+": {
+   "ms_per_eval_mean": 11.934665880398825,
+   "ms_per_eval_std": 0.26967716193447305,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_n-": {
+   "ms_per_eval_mean": 12.020636016968638,
+   "ms_per_eval_std": 0.526845190573252,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_F+": {
+   "ms_per_eval_mean": 12.14903867803514,
+   "ms_per_eval_std": 0.6355823309297284,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_F-": {
+   "ms_per_eval_mean": 11.917011578334495,
+   "ms_per_eval_std": 0.344750453672457,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF3+": {
+   "ms_per_eval_mean": 11.873282376909629,
+   "ms_per_eval_std": 0.30038209807158134,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF4+": {
+   "ms_per_eval_mean": 11.924702541437,
+   "ms_per_eval_std": 0.5183120449708654,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF4-": {
+   "ms_per_eval_mean": 11.933948178775609,
+   "ms_per_eval_std": 0.4583068663891843,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF5+": {
+   "ms_per_eval_mean": 11.924504125490785,
+   "ms_per_eval_std": 0.32655829333803577,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF5-": {
+   "ms_per_eval_mean": 11.958790244534612,
+   "ms_per_eval_std": 0.43925442445761786,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF6-": {
+   "ms_per_eval_mean": 11.939415383385494,
+   "ms_per_eval_std": 0.47536271635088995,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "Te": {
+   "ms_per_eval_mean": 12.112835416337475,
+   "ms_per_eval_std": 0.6074805268025988,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  }
+ },
+ "total_ms_per_eval": 283.0659769254271,
+ "n_species": 21,
+ "eval_machine_id": "cluster-cpu-node",
+ "speedup_vs_legacy_solver": 27.414103539700033,
+ "speedup_vs_lxcat_solver": 50.87153234171141,
+ "superseded_by": {
+  "note": "NOT the published 21-channel timing. This is an earlier measurement on the the cluster CPU node cluster-cpu-node; the paper reports the matched-baseline GPU/workstation numbers.",
+  "published_delta": "data/surrogate/inference_timing_21ch_cluster.json (cluster-gpu-node, A100: 135.17 ms/eval, 91.2x vs legacy solver)",
+  "published_workstation": "data/surrogate/inference_timing_21ch_workstation.json (M1 MPS: 133.96 ms/eval, 55.3x vs legacy solver)",
+  "why_it_differs": "measured before the 2026-07-22 matched-per-platform baseline recompute, and on a different device; retained as a run artifact of record only.",
+  "stamped": "2026-08-22"
+ }
+}

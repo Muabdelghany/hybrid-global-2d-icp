@@ -1,0 +1,25 @@
+{
+ "n_channels": 21,
+ "ensemble_size": 5,
+ "batch_size": 1780,
+ "n_passes": 200,
+ "n_warmup": 20,
+ "n_replicates": 5,
+ "replicate_means_ms": [
+  134.22923333506333,
+  133.31269938986225,
+  133.9592449846532,
+  135.52792769973166,
+  133.2022095899447
+ ],
+ "ms_per_eval_mean": 133.9592449846532,
+ "ms_per_eval_std": 0.8350954783835606,
+ "ms_per_channel_ensemble": 6.379011665935867,
+ "statistic": "median of 5 replicate means (each 200 timed passes after 20 warmup)",
+ "device": "mps",
+ "torch": "2.2.2",
+ "eval_machine_id": "apple-m1-workstation",
+ "speedup_vs_legacy_solver": 55.33415116526211,
+ "baseline_definition": "standalone chemistry-transport solver, workstation M1 CPU 7.41 s, 50x80 production grid over the 1669-cell active mask, dedicated cores (matched_baseline/workstation_M1.json)",
+ "baseline_supersession": "recomputed 2026-07-22 against the matched per-platform baseline; supersedes the retired 7.76 s single-grid contended benchmark (former speedup 57.9). Solver active mask 1669 cells; inference batch 1780 cells (grid-matched, not identical mask)."
+}

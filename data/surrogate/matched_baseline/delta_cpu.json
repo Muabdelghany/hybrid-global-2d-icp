@@ -1,0 +1,17 @@
+{
+ "grid": "Nr=50 Nz=80 (production)",
+ "n_active_cells": 1669,
+ "n_conditions": 20,
+ "n_iter": 80,
+ "rate_mode": "legacy",
+ "mean_s": 12.333760619163513,
+ "std_s": 0.12572017447006667,
+ "min_s": 12.193638324737549,
+ "max_s": 12.816097021102905,
+ "median_s": 12.336676478385925,
+ "machine": "cluster-cpu-node",
+ "processor": "x86_64",
+ "dedicated": true,
+ "omp_num_threads": "4",
+ "note": "standalone chemistry-transport solver at the production grid, dedicated; matched to the 1780-cell surrogate inference"
+}

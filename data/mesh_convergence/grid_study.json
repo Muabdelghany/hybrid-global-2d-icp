@@ -1,0 +1,57 @@
+{
+  "condition": {
+    "power_W": 700.0,
+    "pressure_mTorr": 10.0,
+    "frac_Ar": 0.0
+  },
+  "beta_r": 1.2,
+  "beta_z": 1.0,
+  "metric_note": "F_drop_pct_wafer_7p6cm is Mettler-comparable; F_drop_pct_wall is the full-domain metric.",
+  "provenance": "a separate solver checkout; reproduces Sec. 4.8 unambiguously (original finer-grid run was never stored).",
+  "grids": [
+    {
+      "grid": "25x40",
+      "Nr": 25,
+      "Nz": 40,
+      "cells": 1000,
+      "F_centre_m3": 2.6930956636760143e+20,
+      "F_drop_pct_wafer_7p6cm": 60.15500236535238,
+      "F_drop_pct_wall": 74.37519432778998,
+      "eta_computed": 0.8994758642112785,
+      "time_s": 55.09658336639404
+    },
+    {
+      "grid": "50x80",
+      "Nr": 50,
+      "Nz": 80,
+      "cells": 4000,
+      "F_centre_m3": 2.690543778555944e+20,
+      "F_drop_pct_wafer_7p6cm": 58.975412135510766,
+      "F_drop_pct_wall": 74.09940967002682,
+      "eta_computed": 0.9498459111658532,
+      "time_s": 161.3381416797638
+    },
+    {
+      "grid": "100x160",
+      "Nr": 100,
+      "Nz": 160,
+      "cells": 16000,
+      "F_centre_m3": 2.6629769209999455e+20,
+      "F_drop_pct_wafer_7p6cm": 59.319205538012085,
+      "F_drop_pct_wall": 74.24676981583738,
+      "eta_computed": 0.8946496212958109,
+      "time_s": 697.4297037124634
+    },
+    {
+      "grid": "200x320",
+      "Nr": 200,
+      "Nz": 320,
+      "cells": 64000,
+      "F_centre_m3": 2.6653869134699843e+20,
+      "F_drop_pct_wafer_7p6cm": 59.68723281360331,
+      "F_drop_pct_wall": 74.56788758073183,
+      "eta_computed": 0.8890284446284165,
+      "time_s": 3607.2594265937805
+    }
+  ]
+}

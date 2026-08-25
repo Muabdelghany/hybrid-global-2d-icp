@@ -1,0 +1,29 @@
+{
+  "species": "ion_SF5+",
+  "label": "surrogate_lxcat_v4_arch_ion_SF5+",
+  "winner_experiment": "E3_separate_heads (single-head)",
+  "architecture": "SingleHeadMLP (3\u00d7128 trunk + skip + 2\u00d764 head)",
+  "training_recipe": "v4 per-species (physics reg + bias init + 2000 epochs)",
+  "device": "cuda",
+  "n_cases": 220,
+  "n_ensemble": 5,
+  "n_epochs": 2000,
+  "train_time_s": 2781.831438302994,
+  "ensemble_vals": [
+    8.925354632083327e-05,
+    0.0001220990379806608,
+    0.0002118810807587579,
+    0.00012494533439166844,
+    0.00016458769096061587
+  ],
+  "ens_mean": 0.00014255333808250726,
+  "ens_std": 4.2097830347447214e-05,
+  "metrics": {
+    "rmse": 0.0038676904514431953,
+    "mae": 0.002322952728718519,
+    "max_err": 0.0784158706665039,
+    "ens_spread": 0.0029982600826770067
+  },
+  "rate_source": "lxcat",
+  "output_bias_init": 16.920379638671875
+}

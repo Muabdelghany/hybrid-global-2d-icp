@@ -1,0 +1,29 @@
+{
+  "species": "nSF4",
+  "label": "surrogate_lxcat_v4_arch_nSF4",
+  "winner_experiment": "E3_separate_heads (single-head)",
+  "architecture": "SingleHeadMLP (3\u00d7128 trunk + skip + 2\u00d764 head)",
+  "training_recipe": "v4 per-species (physics reg + bias init + 2000 epochs)",
+  "device": "cuda",
+  "n_cases": 220,
+  "n_ensemble": 5,
+  "n_epochs": 2000,
+  "train_time_s": 2898.6928153038025,
+  "ensemble_vals": [
+    3.605363963288255e-05,
+    2.0223855244694278e-05,
+    3.717700019478798e-05,
+    3.162007487844676e-05,
+    3.044265577045735e-05
+  ],
+  "ens_mean": 3.1103445144253784e-05,
+  "ens_std": 6.007687103844405e-06,
+  "metrics": {
+    "rmse": 0.0021743583492934704,
+    "mae": 0.0012410662602633238,
+    "max_err": 0.017099380493164062,
+    "ens_spread": 0.0013657320523634553
+  },
+  "rate_source": "lxcat",
+  "output_bias_init": 20.057910919189453
+}

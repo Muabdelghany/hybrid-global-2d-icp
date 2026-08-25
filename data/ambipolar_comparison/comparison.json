@@ -1,0 +1,26 @@
+{
+  "operating_point": "1000W / 10mTorr / 70% SF6 / 30% Ar / 200W bias / R_coil=0.8",
+  "window_cm": 7.6,
+  "description": "electropositive (alpha=0) vs electronegative (alpha=1) ambipolar D_a",
+  "runs": {
+    "electropositive": {
+      "label": "electropositive",
+      "alpha_fixed": 0.0,
+      "drop_full_pct": 72.59496740418874,
+      "drop_window_pct": 55.96349125434526,
+      "nF_center_cm3": 154761005963360.78,
+      "eta": 0.9494720038986503,
+      "elapsed_sec": 491.9767355918884
+    },
+    "electronegative": {
+      "label": "electronegative",
+      "alpha_fixed": 1.0,
+      "drop_full_pct": 71.29414350802297,
+      "drop_window_pct": 54.59920230848906,
+      "nF_center_cm3": 147442832397801.84,
+      "eta": 0.9509994224005044,
+      "elapsed_sec": 493.9527645111084
+    }
+  },
+  "wall_clock_sec": 499.3916575908661
+}

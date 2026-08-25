@@ -1,0 +1,201 @@
+{
+ "grid": "Nr=50 Nz=80 (production)",
+ "n_active_cells": 1669,
+ "surrogate_inference_cells": 1780,
+ "grid_match_note": "same 50x80 grid; solver active mask 1669 cells vs surrogate inference batch 1780 cells (grid-matched, not identical mask)",
+ "n_conditions": 20,
+ "n_iter": 80,
+ "under_relaxation_w": 0.12,
+ "rate_mode": "legacy",
+ "mean_s": 13.925744938850404,
+ "std_s": 0.6386341726250392,
+ "min_s": 13.050063133239746,
+ "max_s": 15.634568691253662,
+ "median_s": 13.760714411735535,
+ "per_condition": [
+  {
+   "P_rf_W": 200,
+   "p_mTorr": 3,
+   "frac_Ar": 0.0,
+   "time_s": 13.642106533050537,
+   "F_drop_pct": 74.37495789841884
+  },
+  {
+   "P_rf_W": 300,
+   "p_mTorr": 5,
+   "frac_Ar": 0.0,
+   "time_s": 13.050063133239746,
+   "F_drop_pct": 74.18111042461736
+  },
+  {
+   "P_rf_W": 500,
+   "p_mTorr": 7,
+   "frac_Ar": 0.0,
+   "time_s": 13.100379228591919,
+   "F_drop_pct": 73.76199726722443
+  },
+  {
+   "P_rf_W": 700,
+   "p_mTorr": 10,
+   "frac_Ar": 0.0,
+   "time_s": 13.985671520233154,
+   "F_drop_pct": 73.68781830339901
+  },
+  {
+   "P_rf_W": 1000,
+   "p_mTorr": 15,
+   "frac_Ar": 0.0,
+   "time_s": 13.99114990234375,
+   "F_drop_pct": 73.67952784813141
+  },
+  {
+   "P_rf_W": 200,
+   "p_mTorr": 10,
+   "frac_Ar": 0.1,
+   "time_s": 13.863270044326782,
+   "F_drop_pct": 74.97387134519745
+  },
+  {
+   "P_rf_W": 500,
+   "p_mTorr": 10,
+   "frac_Ar": 0.25,
+   "time_s": 14.360632419586182,
+   "F_drop_pct": 73.76995818845631
+  },
+  {
+   "P_rf_W": 700,
+   "p_mTorr": 10,
+   "frac_Ar": 0.5,
+   "time_s": 13.523226499557495,
+   "F_drop_pct": 72.30534039029381
+  },
+  {
+   "P_rf_W": 1000,
+   "p_mTorr": 5,
+   "frac_Ar": 0.1,
+   "time_s": 13.50753402709961,
+   "F_drop_pct": 71.20156706919498
+  },
+  {
+   "P_rf_W": 1200,
+   "p_mTorr": 20,
+   "frac_Ar": 0.5,
+   "time_s": 13.51940131187439,
+   "F_drop_pct": 72.55425329671804
+  },
+  {
+   "P_rf_W": 300,
+   "p_mTorr": 3,
+   "frac_Ar": 0.05,
+   "time_s": 13.492259502410889,
+   "F_drop_pct": 73.54583458834438
+  },
+  {
+   "P_rf_W": 400,
+   "p_mTorr": 8,
+   "frac_Ar": 0.15,
+   "time_s": 14.309478759765625,
+   "F_drop_pct": 74.02219276361612
+  },
+  {
+   "P_rf_W": 600,
+   "p_mTorr": 12,
+   "frac_Ar": 0.3,
+   "time_s": 15.634568691253662,
+   "F_drop_pct": 73.61660171094688
+  },
+  {
+   "P_rf_W": 800,
+   "p_mTorr": 15,
+   "frac_Ar": 0.4,
+   "time_s": 14.495968341827393,
+   "F_drop_pct": 73.19129183117441
+  },
+  {
+   "P_rf_W": 900,
+   "p_mTorr": 18,
+   "frac_Ar": 0.45,
+   "time_s": 13.68535566329956,
+   "F_drop_pct": 73.12297829816919
+  },
+  {
+   "P_rf_W": 1100,
+   "p_mTorr": 7,
+   "frac_Ar": 0.2,
+   "time_s": 14.332655191421509,
+   "F_drop_pct": 71.47069572107925
+  },
+  {
+   "P_rf_W": 350,
+   "p_mTorr": 20,
+   "frac_Ar": 0.0,
+   "time_s": 15.21689772605896,
+   "F_drop_pct": 75.0135646758143
+  },
+  {
+   "P_rf_W": 750,
+   "p_mTorr": 6,
+   "frac_Ar": 0.35,
+   "time_s": 13.836073160171509,
+   "F_drop_pct": 71.59104303267334
+  },
+  {
+   "P_rf_W": 550,
+   "p_mTorr": 14,
+   "frac_Ar": 0.1,
+   "time_s": 13.315773487091064,
+   "F_drop_pct": 74.28056212320622
+  },
+  {
+   "P_rf_W": 1050,
+   "p_mTorr": 9,
+   "frac_Ar": 0.25,
+   "time_s": 13.652433633804321,
+   "F_drop_pct": 72.05008044900735
+  }
+ ],
+ "convergence_certificate": [
+  {
+   "P_rf_W": 200,
+   "p_mTorr": 3,
+   "frac_Ar": 0.0,
+   "F_drop_pct": {
+    "40": 74.37731428285244,
+    "80": 74.37495789841884,
+    "120": 74.37469659140909
+   },
+   "nF_rel_change_40_80": 0.011472336814881426,
+   "nF_rel_change_80_120": 0.00011700776847217072
+  },
+  {
+   "P_rf_W": 700,
+   "p_mTorr": 10,
+   "frac_Ar": 0.0,
+   "F_drop_pct": {
+    "40": 73.75422650587709,
+    "80": 73.68781830339901,
+    "120": 73.68689479359192
+   },
+   "nF_rel_change_40_80": 0.004091502154198445,
+   "nF_rel_change_80_120": 9.92540100212499e-05
+  },
+  {
+   "P_rf_W": 1200,
+   "p_mTorr": 20,
+   "frac_Ar": 0.5,
+   "F_drop_pct": {
+    "40": 72.78688472990902,
+    "80": 72.55425329671804,
+    "120": 72.55087707850953
+   },
+   "nF_rel_change_40_80": 0.059071537643471554,
+   "nF_rel_change_80_120": 0.0013139220337644586
+  }
+ ],
+ "convergence_note": "nF-stability check at 3 sampled conditions (not a universal convergence proof): the largest relative nF field change from iter 80 to 120 is 1.314e-03 (about 0.13%, below 1.4e-3); iteration-intrinsic and platform-independent",
+ "machine": "cluster-cpu-node",
+ "processor": "x86_64",
+ "dedicated": true,
+ "omp_num_threads": "4",
+ "headline_reference": "delta_cpu.json (12.33 s, 1750x; node cluster-cpu-node, std 0.13) is the manuscript baseline; this instrumented rerun on node cluster-cpu-node gives 13.93 s (std 0.64), ~13%% higher -- a node-to-node spread on the shared cpu partition. The manuscript retains the lower, tighter cluster-cpu-node figure, which yields the more conservative speedup (a higher solver time would only raise it). The convergence certificate is identical to the workstation, confirming it is platform-independent."
+}

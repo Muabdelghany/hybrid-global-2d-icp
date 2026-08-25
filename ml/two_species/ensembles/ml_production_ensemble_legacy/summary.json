@@ -1,0 +1,84 @@
+{
+  "label": "surrogate_lxcat_v4_arch",
+  "winner_experiment": "E3_separate_heads",
+  "architecture": "SeparateHeadsMLP (shared trunk + per-species heads)",
+  "training_recipe": "v4 (physics reg + bias init + 2000 epochs)",
+  "device": "mps",
+  "n_cases": 220,
+  "n_ensemble": 5,
+  "n_epochs": 2000,
+  "train_time_s": 48052.40879893303,
+  "ensemble_vals": [
+    0.00014922342961654067,
+    9.85330407274887e-05,
+    0.00012142059858888388,
+    0.00010898411710513756,
+    9.889794455375522e-05
+  ],
+  "ens_mean": 0.0001154118261183612,
+  "ens_std": 1.885866910192898e-05,
+  "metrics": {
+    "nF": {
+      "rmse": 0.004477032460272312,
+      "mae": 0.003307443344965577,
+      "max_err": 0.031887054443359375,
+      "ens_spread": 0.0024688069242984056
+    },
+    "nSF6": {
+      "rmse": 0.0039190552197396755,
+      "mae": 0.0026877140626311302,
+      "max_err": 0.019067764282226562,
+      "ens_spread": 0.0017737996531650424
+    }
+  },
+  "rate_source": "lxcat",
+  "selection": {
+    "method": "Lowest nF RMSE mean across 3 seeds in architecture sweep",
+    "sweep_nF_rmse": 0.00542,
+    "sweep_nF_std": 0.00069,
+    "all_candidates": [
+      {
+        "name": "E0_baseline",
+        "nF_rmse": 0.02227
+      },
+      {
+        "name": "E1_v4_recipe",
+        "nF_rmse": 0.00606
+      },
+      {
+        "name": "E2_wider_deeper",
+        "nF_rmse": 0.00626
+      },
+      {
+        "name": "E3_separate_heads",
+        "nF_rmse": 0.00542
+      },
+      {
+        "name": "E4_residual",
+        "nF_rmse": 0.0053
+      },
+      {
+        "name": "E5_enhanced_features",
+        "nF_rmse": 0.01363
+      }
+    ]
+  },
+  "comparison": {
+    "vs_surrogate_v4": {
+      "v4_nF_rmse": 0.0029,
+      "v4_nSF6_rmse": 0.0027,
+      "this_nF_rmse": 0.004477032460272312,
+      "this_nSF6_rmse": 0.0039190552197396755,
+      "nF_ratio": 1.543804296645625,
+      "nSF6_ratio": 1.4515019332369168
+    },
+    "vs_surrogate_lxcat_v3": {
+      "v3_nF_rmse": 0.0112,
+      "v3_nSF6_rmse": 0.0081,
+      "this_nF_rmse": 0.004477032460272312,
+      "this_nSF6_rmse": 0.0039190552197396755,
+      "nF_improvement": 0.6002649589042578,
+      "nSF6_improvement": 0.516166022254361
+    }
+  }
+}

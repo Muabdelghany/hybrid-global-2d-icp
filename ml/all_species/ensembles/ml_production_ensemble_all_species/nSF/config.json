@@ -1,0 +1,20 @@
+{
+  "species": "nSF",
+  "n_in": 5,
+  "nf": 64,
+  "fs": 3.0,
+  "drop": 0.05,
+  "trunk_layers": 3,
+  "trunk_width": 128,
+  "head_layers": 2,
+  "head_width": 64,
+  "output_bias_init": 18.049854278564453,
+  "seeds": [
+    42,
+    179,
+    316,
+    453,
+    590
+  ],
+  "n_epochs": 2000
+}

@@ -1,0 +1,8 @@
+branch,gamma_Al,F_centre_m-3,mag_err_pct,drop_pct_windowed,drop_pct_fulldomain
+90pct_SF6_bias_on,0.06,3.89e+20,3.1,41.5,52.1
+90pct_SF6_bias_on,0.1,3.372e+20,-10.6,51.1,64.3
+90pct_SF6_bias_on,0.14,3.107e+20,-17.7,57.1,71.9
+90pct_SF6_bias_on,0.155,3.037e+20,-19.5,58.9,74.0
+90pct_SF6_bias_on,0.18,2.942e+20,-22.0,61.4,77.0
+90pct_SF6_bias_on,0.24,2.783e+20,-26.3,65.8,82.1
+90pct_SF6_bias_on,0.32,2.647e+20,-29.9,69.7,86.5

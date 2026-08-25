@@ -1,0 +1,32 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 M. A. Abdelghany, Z. Ngan, D. Qerimi
+
+This license covers the data and figures that are our own output: everything
+under data/ and figures/, and the trained model weights under ml/, EXCEPT the
+third-party-derived material listed in THIRD_PARTY_DATA.md. That material is
+carved out and is not licensed by this file. At the time of writing the carve-out
+is data/benchmark_0d_reference/ and data/measurements/, both digitized from
+previously published figures.
+
+Everything else in those directories is licensed under the Creative Commons
+Attribution 4.0 International License.
+
+You are free to share and adapt this material for any purpose, including
+commercially, provided you give appropriate credit, link to the license, and
+indicate if changes were made.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+Summary:           https://creativecommons.org/licenses/by/4.0/
+
+Attribution should cite the accompanying paper:
+
+  M. A. Abdelghany, Z. Ngan, D. Qerimi, "A self-consistent hybrid global-2D model
+  for SF6/Ar inductively coupled plasma etchers with neural-network surrogate
+  acceleration", Journal of Physics D: Applied Physics.
+
+Material in this repository that originates elsewhere is listed in
+THIRD_PARTY_DATA.md and remains under the terms of its original source. This
+license does not extend to it.
+
+Source code is licensed separately under the MIT License; see LICENSE.

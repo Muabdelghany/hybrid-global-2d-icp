@@ -1,0 +1,20 @@
+{
+  "winner_experiment": "E3_separate_heads",
+  "architecture": "SeparateHeadsMLP (shared trunk + per-species heads)",
+  "enhanced_features": false,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "scheduler": "CosineAnnealing",
+  "eta_min": 1e-06,
+  "epochs": 2000,
+  "batch_size": 4096,
+  "loss_weights": {
+    "nF": 1.0,
+    "nSF6": 1.5
+  },
+  "physics_reg": {
+    "smoothness": 0.0005,
+    "bounded_density": 0.001,
+    "wafer_smoothness": 0.0002
+  }
+}

@@ -1,0 +1,17 @@
+{
+ "n_passes": 200,
+ "n_warmup": 20,
+ "ensemble_size": 5,
+ "batch_size": 1780,
+ "batch_definition": "single representative operating point (inside-mask cells of one validation case)",
+ "ms_per_eval_mean": 14.815836514753755,
+ "ms_per_eval_std": 1.5016604839051868,
+ "eval_machine_id": "cluster-cpu-node",
+ "speedup_vs_legacy_solver": 523.7638787572012,
+ "speedup_vs_lxcat_solver": 971.9329708896516,
+ "superseded_by": {
+  "note": "NOT the published two-species timing. Measured on the the cluster CPU node cluster-cpu-node before the 2026-07-22 matched-per-platform baseline recompute.",
+  "published": "data/surrogate/inference_timing.json (cluster-gpu-node, A100: 7.046 ms/eval, 1750x vs legacy solver)",
+  "stamped": "2026-08-22"
+ }
+}

@@ -1,0 +1,41 @@
+{
+  "purpose": "A single operating point for checking that a local build of the solver reproduces our results bit for bit. This is NOT the operating point of the published reference dataset, which is 30% Ar and lives in data/reference_case/.",
+  "case": "1000 W, 10 mTorr, x_Ar = 0.10, bias on at 200 W, production closure (model/production_flags.json)",
+  "command": "PYTHONPATH=src:scripts python scripts/run_one_verification_case.py --power 1000 --pressure 10 --x-ar 0.10 --bias --p-bias-w 200 --gamma-al 0.155 --f-e-bias 1.0 --bias-closure f_e_bias --te-closure energy_transport --per-cell-rates --depleted-att --ec-wide --ne-cap 1e20 --reconciled-rates --outer-loop --mode legacy --out results/reference",
+  "note": "Field-array digests are bit-level and assume single-threaded BLAS (OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1). Scalars should agree to every digit printed here.",
+  "summary_key_count": 74,
+  "scalars": {
+    "eta": 0.9444527265526386,
+    "Te_avg": 3.2286217300694506,
+    "F_drop_pct": 74.00886012296833,
+    "ne_avg_icp": 486700819460.4994,
+    "nF_centre_wafer_cm3": 303688660893248.94
+  },
+  "field_arrays_sha256": {
+    "E_theta_rms.npy": "673ad59808d83a8d09ca3dc6f6f62ed4407cf27496564aa7436b05a5527527b4",
+    "P_rz.npy": "4939675cf2b0461dbfe8abb8f19c4e07eff3d78da261ace65c2872cc8bd7d406",
+    "Te.npy": "2b48b9e8026950f1a37abf741a03f46b2eed4c4ac13e63db8275eccc7e004b13",
+    "ion_F+.npy": "e119f466b0c9840c893a48b2ded7a010598d8a1a814e41426e842eff928e12b0",
+    "ion_F-.npy": "a5f5facee5918a8d8ae7c379f2447313ae7448f30f17319bcd10d92f1bbfe6c2",
+    "ion_SF3+.npy": "56050eddfbbf07bdf266909c2dcb2f4475ce632e017bab834e72aac695931238",
+    "ion_SF4+.npy": "67a3b64d876b9d00aee4c2fcb37a3a09c44b40350a61fde94542e43840f34952",
+    "ion_SF4-.npy": "1f85c25ad51eb2a45058ff58f061b76ad1af652f161340bcf9e267d0b830222a",
+    "ion_SF5+.npy": "cf25301745031d3cdf740e20b6e13ddb94d4cdff4a00b872fe065d55d35356c0",
+    "ion_SF5-.npy": "a6c9510c01d0e91e83a083518a54bb3f9ec492d24e1b8a65541f7a13c8c77527",
+    "ion_SF6-.npy": "76a298615e0c45ff7488633d103d35e5b23c9bc514c4633791591add12be4e69",
+    "ion_alpha.npy": "01ace3fff842910fa0fe5a37147c55a24d66d8da958077a2e1d36893707a118b",
+    "ion_n+.npy": "20be7016fa527b2d59563e5381d686d1b8e61806858c6675f55c393d9f685189",
+    "ion_n-.npy": "be54f1953c09ad7d3648ab759c8a64607b9728de5ff04ffed690b66b43eb6121",
+    "ion_ne.npy": "65a85028d1caea4ecd5f6dac71c3ddca52b44962ebc9ef6fa565687709cef1df",
+    "nF.npy": "128bc9e8333b4392d05f1ebfc5fa610a5e0f3e5c209a359e686a85a8522d041b",
+    "nF2.npy": "5a69dc662ab8275ddfbd12c68fffea5438ae8ac427ac076600c2fba834310d6d",
+    "nS.npy": "ed7612ef5319f61c73e7fa940cbf05c2671a8387d898e4cf2d0fd44b43cc9c4d",
+    "nSF.npy": "0848136dc3bd6773ef64179d10dbc27afbd57b438089533253e85f75977b95cd",
+    "nSF2.npy": "2a5435fb5da688f26dfb6c5525b89fb8e265628c7a21b12c5fa4628dd9bd84ec",
+    "nSF3.npy": "22afc939bc57bd08d7b8f3ba0e915d030b866e3f31b94b77319cb187bcdebb54",
+    "nSF4.npy": "2970a0c2f51046699791314e77080f10877b01dd93fb0dea81e58fd4ff894d17",
+    "nSF5.npy": "79d3fb04ee2825694e7431dbc29d1bac78653ba3abb8988825b5a209a1fd4c2b",
+    "nSF6.npy": "c70133b575a341aba0c78abdb3414278de04cbd4d21d6abd252464589ebdc65d",
+    "ne.npy": "3d8b4a55add0e362ff13e0ca62c1eeeab82e1d08f9f87fa7c15fa530b2c72f46"
+  }
+}

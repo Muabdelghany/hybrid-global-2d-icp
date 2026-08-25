@@ -1,0 +1,65 @@
+# Test Configuration: Small grid for fast debugging
+# Coarse mesh (20x30), fewer iterations
+
+circuit:
+  source_power: 700
+  source_frequency: 40.0e6
+  impedance: 50
+
+geometry:
+  coil_radius: 2.0e-3
+  num_coils: 6
+  coil_start_z: 0.145
+  coil_spacing: 0.010
+  coil_r_position: 0.0405
+  coil_start_y: 0.145
+  left_coil_x: 0.0405
+  right_coil_x: 0.0405
+
+reactor_geometry:
+  R_icp: 0.038
+  R_proc: 0.105
+  L_icp: 0.150
+  L_proc: 0.050
+  L_apt: 0.002
+  Nr: 20
+  Nz: 30
+  beta_r: 1.0                # Uniform (no stretching for test)
+  beta_z: 1.0
+
+operating:
+  pressure_mTorr: 10
+  frac_Ar: 0.0
+  Q_sccm: 100
+  Tgas: 313
+  eta_initial: 0.43
+
+wall_chemistry:
+  gamma_quartz: 0.001
+  gamma_Al: 0.18
+  gamma_wafer: 0.025
+  gamma_window: 0.001
+
+coupling:
+  max_picard_iter: 5          # Fewer iterations for test
+  picard_tol: 0.05
+  under_relax_ne: 0.3
+  under_relax_Te: 0.3
+  inner_chem_iter: 20         # Fewer inner iterations
+  inner_chem_relax: 0.12
+  rerun_fdtd_every: 3
+
+simulation:
+  fdtd_rf_cycles: 1           # Just 1 cycle for test
+  max_iter: 5000
+  tolerance: 1.0e-2
+  relaxation_omega: 1.8
+  testing_mode: true
+
+grid:
+  x_min: 0
+  x_max: 0.105
+  y_min: 0
+  y_max: 0.220
+  dx: 5.0e-3
+  dy: 8.0e-3

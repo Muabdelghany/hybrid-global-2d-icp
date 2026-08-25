@@ -1,0 +1,146 @@
+{
+ "per_species": {
+  "nSF6": {
+   "ms_per_eval_mean": 6.746450779028237,
+   "ms_per_eval_std": 0.30324611887581526,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF5": {
+   "ms_per_eval_mean": 6.3950723194284365,
+   "ms_per_eval_std": 0.12360526862360195,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF4": {
+   "ms_per_eval_mean": 6.610333202988841,
+   "ms_per_eval_std": 0.37392557846578417,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF3": {
+   "ms_per_eval_mean": 6.571915317908861,
+   "ms_per_eval_std": 0.11034741388033137,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF2": {
+   "ms_per_eval_mean": 6.46987094078213,
+   "ms_per_eval_std": 0.45880233430878503,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nSF": {
+   "ms_per_eval_mean": 6.178626597975381,
+   "ms_per_eval_std": 0.14427753477154703,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nF": {
+   "ms_per_eval_mean": 6.229202800313942,
+   "ms_per_eval_std": 0.12588069664844445,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nF2": {
+   "ms_per_eval_mean": 6.250627861008979,
+   "ms_per_eval_std": 0.14260920811988115,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "nS": {
+   "ms_per_eval_mean": 6.41923573683016,
+   "ms_per_eval_std": 0.11020552547043165,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_ne": {
+   "ms_per_eval_mean": 6.4070163236465305,
+   "ms_per_eval_std": 0.18412200484628033,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_n+": {
+   "ms_per_eval_mean": 6.434196201735176,
+   "ms_per_eval_std": 0.17190496147626955,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_n-": {
+   "ms_per_eval_mean": 6.141557056107558,
+   "ms_per_eval_std": 0.1267275458601192,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_F+": {
+   "ms_per_eval_mean": 6.7431577609386295,
+   "ms_per_eval_std": 0.14662269054152458,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_F-": {
+   "ms_per_eval_mean": 6.555808982229792,
+   "ms_per_eval_std": 0.1030768011992739,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF3+": {
+   "ms_per_eval_mean": 6.4409104629885405,
+   "ms_per_eval_std": 0.11301418087881869,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF4+": {
+   "ms_per_eval_mean": 6.236234239768237,
+   "ms_per_eval_std": 0.1164276710183673,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF4-": {
+   "ms_per_eval_mean": 6.39354407961946,
+   "ms_per_eval_std": 0.1399035006885537,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF5+": {
+   "ms_per_eval_mean": 6.261377839255147,
+   "ms_per_eval_std": 0.1162091089527877,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF5-": {
+   "ms_per_eval_mean": 6.533229338238016,
+   "ms_per_eval_std": 0.11754077394974022,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "ion_SF6-": {
+   "ms_per_eval_mean": 6.610988921602257,
+   "ms_per_eval_std": 0.13281665106367335,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  },
+  "Te": {
+   "ms_per_eval_mean": 6.543617658899166,
+   "ms_per_eval_std": 0.10818610557615102,
+   "batch_size": 1780,
+   "ensemble_size": 5
+  }
+ },
+ "total_ms_per_eval": 135.17297442129347,
+ "n_species": 21,
+ "eval_machine_id": "cluster-gpu-node",
+ "speedup_vs_legacy_solver": 91.24427920571529,
+ "provenance": {
+  "device": "cuda (NVIDIA A100)",
+  "synchronization": "torch.cuda.synchronize() before each timed-pass stop",
+  "n_warmup": 20,
+  "n_passes": 200,
+  "n_replicates": 1,
+  "statistic": "per-channel mean over 200 timed passes after 20 warmup (single replicate); total is the sum across 21 single-head ensembles",
+  "software": "torch 2.8.0+cu128 (pytorch-conda/2.8)",
+  "baseline_definition": "standalone chemistry-transport solver, the cluster CPU 12.33 s, 50x80 production grid over the 1669-cell active mask, dedicated cores (matched_baseline/delta_cpu.json)",
+  "note": "measured numeric fields unchanged; this block is descriptive metadata added 2026-07-22 to match the workstation record's detail"
+ },
+ "baseline_supersession": "recomputed 2026-07-22 against the matched per-platform baseline; supersedes the retired 7.76 s single-grid contended benchmark (former speedup 57.4). Solver active mask 1669 cells; inference batch 1780 cells (grid-matched, not identical mask)."
+}
