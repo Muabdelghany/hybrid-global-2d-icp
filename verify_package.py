@@ -103,12 +103,12 @@ _PERSONAL_DIGESTS = frozenset((
 # legitimate bibliographic citations, so the bare names are not a disclosure. What does leak
 # infrastructure is a machine address, so those are matched as hostnames instead.
 _ORGHOST = re.compile(r"(?<![A-Za-z0-9.-])[A-Za-z0-9-]+\.(?:[A-Za-z0-9-]+\.)*"
-                      r"(?:ncsa|illinois)\.edu(?![A-Za-z0-9])")
+                      r"(?:ncsa|illinois)\.edu(?![A-Za-z0-9])", re.I)
 _HOMEDIR = re.compile(r"(?:/Users/|/home/|[A-Za-z]:\\\\Users\\\\)([A-Za-z0-9._-]+)")
 _TOKEN6 = re.compile(r"[A-Za-z][A-Za-z0-9]{5,}")
 # Compute-node names are too short for the token matcher above (cn093, gpua031),
 # so they are matched structurally instead.
-_NODENAME = re.compile(r"(?<![A-Za-z0-9])(?:cn|gpua|nid)\d{3,}(?![A-Za-z0-9])")
+_NODENAME = re.compile(r"(?<![A-Za-z0-9])(?:cn|gpua|nid)\d{3,}(?![A-Za-z0-9])", re.I)
 _SCAN_EXT = (".py", ".sh", ".sbatch", ".md", ".json", ".yaml", ".yml", ".txt", ".tex", ".csv")
 
 def _personal_hits(text):
@@ -116,7 +116,9 @@ def _personal_hits(text):
         return True
     for m in _ORGHOST.finditer(text):
         # a published archive link is a citation, not infrastructure
-        if not m.group().startswith(("www.ideals.", "ideals.")):
+        # the dissertation's archive host is a citation; anything else is infrastructure.
+        # match the whole host, so ideals.illinois.edu.example.com does not slip through.
+        if m.group().lower() not in ("ideals.illinois.edu", "www.ideals.illinois.edu"):
             return True
     for m in _HOMEDIR.finditer(text):
         user = m.group(1)
@@ -390,6 +392,7 @@ check("no internal version labels", not ver_hits, "; ".join(ver_hits[:3]))
 # but commas passed every other check here, so this one reads the cells: each file needs
 # at least one data row, and no column may be entirely empty.
 import csv as _csv
+import math as _math
 empty = []
 _pv = os.path.join(ROOT, "data", "plotted_values")
 for dd, _, fs in walk(_pv):
@@ -402,12 +405,69 @@ for dd, _, fs in walk(_pv):
             empty.append("%s unreadable" % rel); continue
         if len(rows) < 2:
             empty.append("%s has no data rows" % rel); continue
-        ncol = len(rows[0])
+        hdr, body = rows[0], rows[1:]
+        ncol = len(hdr)
+        if any(not h.strip() for h in hdr):
+            empty.append("%s has a blank column header" % rel); continue
+        if len(set(hdr)) != ncol:
+            empty.append("%s has duplicate column headers" % rel); continue
+        if any(len(r) != ncol for r in body):
+            empty.append("%s has a ragged row" % rel); continue
+        def _cell(v):
+            """None for a deliberate gap, False for a broken number, True otherwise.
+            Text is fine: several figures are categorical (tornado bars, per-channel
+            metrics), so the first column may be a parameter name rather than a value."""
+            v = v.strip()
+            if v in ("", "nan"): return None
+            try:
+                return _math.isfinite(float(v))
+            except ValueError:
+                return True                          # a label, not a number
+        # the abscissa must be complete: without it a row cannot be placed at all
+        if any(not r[0].strip() for r in body):
+            empty.append("%s has a missing value in its first column" % rel); continue
         for c in range(1, ncol):
-            col = [r[c].strip() for r in rows[1:] if len(r) > c]
-            if col and all(v in ("", "nan") for v in col):
-                empty.append("%s column %r is empty" % (rel, rows[0][c][:30])); break
+            col = [_cell(r[c]) for r in body]
+            if all(v is None for v in col):
+                empty.append("%s column %r is empty" % (rel, hdr[c][:30])); break
+            if any(v is False for v in col):
+                empty.append("%s column %r has a non-finite value" % (rel, hdr[c][:30])); break
 check("plotted values are populated", not empty, "; ".join(empty[:3]))
+
+# --- the shipped mesh must be the one the solver builds -----------------------
+# mesh.npz is what lets a reader place a field array in space. It was once written from a
+# hand-rebuilt geometry that omitted the aperture, putting every axial coordinate 2 mm out
+# while every other check still passed. This rebuilds it the way the sweep driver does and
+# compares, so the coordinates cannot silently drift from the solver again.
+_mesh_bad = []
+_mp = os.path.join(ROOT, "data", "reference_case", "mesh.npz")
+if not os.path.exists(_mp):
+    _mesh_bad.append("mesh.npz missing")
+else:
+    try:
+        import numpy as _np, yaml as _yaml
+        sys.path.insert(0, os.path.join(ROOT, "model", "src"))
+        from dtpm.core.mesh import Mesh2D as _M
+        _rg = _yaml.safe_load(open(os.path.join(ROOT, "model", "config",
+                                                "default_config.yaml")))["reactor_geometry"]
+        _L = _rg["L_proc"] + _rg["L_apt"] + _rg["L_icp"]
+        _m = _M(R=_rg["R_proc"], L=_L, Nr=_rg["Nr"], Nz=_rg["Nz"],
+                beta_r=_rg["beta_r"], beta_z=_rg["beta_z"])
+        _z = _np.load(_mp)
+        for _k, _want in (("r_centres_m", _m.rc), ("z_centres_m", _m.zc),
+                          ("r_faces_m", _m.rf), ("z_faces_m", _m.zf),
+                          ("cell_volume_m3", _m.vol)):
+            if _k not in _z:
+                _mesh_bad.append("mesh.npz has no %s" % _k)
+            elif not _np.allclose(_z[_k], _want, rtol=0, atol=1e-15):
+                _mesh_bad.append("mesh.npz %s does not match the solver" % _k)
+        _fld = _np.load(os.path.join(ROOT, "data", "reference_case", "nF.npy"))
+        if _fld.shape != _m.vol.shape:
+            _mesh_bad.append("field arrays %s do not match the mesh %s"
+                             % (_fld.shape, _m.vol.shape))
+    except ImportError as _e:
+        _mesh_bad.append("could not import the solver mesh (%s)" % _e)
+check("shipped mesh matches the solver", not _mesh_bad, "; ".join(_mesh_bad[:2]))
 
 print("=" * 74)
 print("%d check(s) failed" % len(fail) if fail else "all checks passed")

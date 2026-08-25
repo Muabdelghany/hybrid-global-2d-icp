@@ -20,8 +20,12 @@ Values are SI, so densities are m^-3 and temperatures eV.
 | `r_faces_m` | (51,) | radial cell faces, for pcolormesh |
 | `z_faces_m` | (81,) | axial cell faces |
 | `cell_volume_m3` | (50, 80) | cell volumes, for volume-weighted averages |
+| `inside_domain` | (50, 80) | boolean, true inside the plasma domain |
 
-The radial mesh is tanh-stretched toward the wall (beta_r = 1.2); the axial mesh is uniform. To
+The domain spans r = 0 to 0.105 m and z = 0 to 0.202 m, the latter being the process chamber,
+the aperture and the ICP source stacked together. The radial mesh is tanh-stretched toward the
+wall (beta_r = 1.2); the axial mesh is uniform. Cells outside the reactor body carry zeros, so
+mask with `inside_domain` before taking statistics. To
 plot a field:
 
 ```python

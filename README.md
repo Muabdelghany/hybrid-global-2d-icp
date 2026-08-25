@@ -213,8 +213,5 @@ repository.
 
 ## Citing
 
-Cite the paper; `CITATION.cff` carries the metadata. This repository is archived on Zenodo, and
-the archived snapshot carries its own DOI. Until the paper appears, that DOI is recorded in the
-paper's data availability statement rather than here, because the archive is created at
-acceptance. If you have reached this repository before then and need to cite it, cite the paper
-and note the commit you used.
+Cite the paper; `CITATION.cff` carries the metadata. To refer to this repository specifically,
+cite the paper and give the commit you used.

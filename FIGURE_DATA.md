@@ -21,7 +21,7 @@ were drawn from.
 | 13 | Wafer-plane [F] against measurement | data/plotted_values/figure13/ | raw: data/composition_scan/ + data/measurements/ |
 | 14 | Ambipolar closure comparison | data/plotted_values/figure14/ | raw: data/ambipolar_comparison/ |
 | 15 | Power scalings | data/plotted_values/figure15/ | raw: data/parameter_sweeps/power_1000W_biased/ |
-| 16 | Pressure sweep | data/plotted_values/figure16/ | raw: data/parameter_sweeps/ |
+| 16 | Power and pressure sweeps | data/plotted_values/figure16/ | raw: data/parameter_sweeps/ |
 | 17 | Wafer-plane [F]: 2D against 0D and measurement | data/plotted_values/figure17/ | raw: data/reference_case_prior_closure/ + data/measurements/ |
 | 18 | Mesh convergence | data/plotted_values/figure18/ | raw: data/mesh_convergence/ |
 | 19 | Network architecture | — | schematic, no data |
