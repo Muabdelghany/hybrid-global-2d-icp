@@ -19,9 +19,9 @@ are grid-matched, not identical-workload. The manuscript states both counts.
 | File | Role |
 |---|---|
 | `workstation_M1.json` | The reported workstation baseline: 7.41 s +/- 0.39 (Apple M1 CPU, dedicated). Gives 872x (2-ch) and 55x (21-ch). |
-| `delta_cpu.json` | The reported cluster baseline: 12.33 s +/- 0.13 (node cluster-cpu-node, dedicated, tight std). Gives 1750x (2-ch) and 91x (21-ch). |
+| `cluster_cpu.json` | The reported cluster baseline: 12.33 s +/- 0.13 (node cluster-cpu-node, dedicated, tight std). Gives 1750x (2-ch) and 91x (21-ch). |
 | `matched_baseline_percondition_workstation_M1.json` | Instrumented rerun: 20 per-condition times + convergence certificate. Mean 7.35 s reproduces the headline within run-to-run noise (<1%). |
-| `matched_baseline_percondition_cn093.json` | Instrumented rerun on the cluster node cluster-cpu-node: 20 per-condition times + convergence certificate. See node-variation note below. |
+| `matched_baseline_percondition_cluster_node_b.json` | Instrumented rerun on the cluster node cluster-cpu-node: 20 per-condition times + convergence certificate. See node-variation note below. |
 
 ## Convergence certificate
 
@@ -36,7 +36,7 @@ the timing aggregate is per-platform.
 
 ## Node-to-node variation on the cluster
 
-The reported cluster baseline (`delta_cpu.json`, node cluster-cpu-node) is 12.33 s with a tight 0.13 s std.
+The reported cluster baseline (`cluster_cpu.json`, node cluster-cpu-node) is 12.33 s with a tight 0.13 s std.
 An independent instrumented rerun landed on a different, apparently busier node (cluster-cpu-node) and
 gave 13.93 s with a looser 0.64 s std -- about 13% higher. This is node-to-node/contention
 spread on the shared `cpu` partition. The manuscript retains the lower, tighter cluster-cpu-node figure,

@@ -29,28 +29,48 @@ sections above.
 
 The swarm table in `data/boltzmann/bolsig_data.h5` holds our own two-term Boltzmann solutions
 over an (E/N, x_Ar) grid. The solver used is BOLSIG+, by G. J. M. Hagelaar and L. C. Pitchford,
-*Plasma Sources Science and Technology* **14** 722 (2005). Cite that paper for the solver. The
-table itself is derived output produced by this project.
+> Hagelaar G J M and Pitchford L C 2005 Solving the Boltzmann equation to obtain electron
+> transport coefficients and rate coefficients for fluid models
+> *Plasma Sources Sci. Technol.* **14** 722--733.
+> [doi:10.1088/0963-0252/14/4/011](https://doi.org/10.1088/0963-0252/14/4/011)
+
+Cite that paper for the solver. The table itself is derived output produced by this project and
+is covered by `LICENSE-DATA`.
 
 ## Digitized 0D benchmark traces
 
-`data/benchmark_0d_reference/` holds curves digitized from the published figures of the prior
-0D study the model is benchmarked against in figures 2 and 3. The manuscript's reference list
-carries the full citation. Only the curves needed for the comparison were digitized, at the
-resolution the comparison needs, and they are not a substitute for the original work. Our own
-solve of the same conditions is in `data/benchmark_0d_model/` and is covered by `LICENSE-DATA`.
+`data/benchmark_0d_reference/` holds curves digitized from the published figures of the study
+the model is benchmarked against in figures 2 and 3:
+
+> Lallement L, Rhallabi A, Cardinaud C, Peignon-Fernandez M C and Alves L L 2009
+> Global model and diagnostic of a low-pressure SF6/Ar inductively coupled plasma
+> *Plasma Sources Sci. Technol.* **18** 025001.
+> [doi:10.1088/0963-0252/18/2/025001](https://doi.org/10.1088/0963-0252/18/2/025001)
+
+Only the curves needed for the comparison were digitized, at the resolution the comparison
+needs. They are a reading of the published figures, not the authors' own data, and are no
+substitute for the original paper. Reuse is governed by that paper's terms, not by
+`LICENSE-DATA`. Our own solve of the same conditions is in `data/benchmark_0d_model/` and is
+covered by `LICENSE-DATA`.
 
 ## Experimental comparison data
 
-`data/measurements/` holds traces digitized from the published figures of the cited dissertation,
-for benchmark comparison only. The manuscript's reference list carries the full citation.
-Digitized traces are reproduced at the resolution the comparison needs and are not a substitute
-for the original measurements.
+`data/measurements/` holds traces digitized from the published figures of:
+
+> Mettler J J H 2025 *Spatially Resolved Probes for the Measurement of Fluorine Radicals*
+> PhD dissertation, University of Illinois Urbana-Champaign.
+> <https://www.ideals.illinois.edu/items/136797>
+
+They are used for benchmark comparison only, reproduced at the resolution the comparison needs,
+and are no substitute for the original measurements. Reuse is governed by the dissertation's
+terms, not by `LICENSE-DATA`.
 
 ## Arrhenius rate set
 
 The Arrhenius rate coefficients compared against the Boltzmann set in figure 23 are taken from
-the reaction set cited in the manuscript. See the manuscript's reference list.
+the reaction set of Lallement *et al* 2009, cited in full above. Only the coefficients are used,
+evaluated by our own code; the values plotted in `data/plotted_values/figure23/` are our
+output.
 
 ## Reactor geometry
 

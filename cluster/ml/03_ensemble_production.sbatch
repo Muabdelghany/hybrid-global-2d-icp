@@ -1,4 +1,4 @@
-# AUTHORITATIVE production job: trained the 5-member two-species ensemble AND the
+# The job that produced the deployed weights: the 5-member two-species ensemble and the
 # recipe ablation on the legacy-mode dataset. This is the pair the manuscript reports.
 # The numbered 01/02/03 jobs in this folder are the earlier lxcat-variant study.
 #

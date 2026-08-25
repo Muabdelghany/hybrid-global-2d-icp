@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
-"""Write TREE_SHA256.txt: a whole-payload digest of this package.
+"""Write TREE_SHA256.txt: a whole-payload digest of this repository.
 
-The certified MD5 manifest covers 43 files under model/. That is the right scope for the
-*code* provenance claim, but it leaves the other ~896 files -- figures, data, surrogate
-weights, cluster scripts, docs -- unguarded. This package now exists as several independent
-copies (the submission copy, and one inside the project repository for Phase-2 to build on),
-with nothing keeping them in step, so a whole-payload check is what makes drift detectable.
+The certified MD5 manifest covers the 43 files under model/. That is the right scope for the
+code provenance claim, but it leaves the data, the surrogate weights, the cluster scripts and
+the documentation unguarded. This manifest closes that gap, so a reader can confirm the whole
+tree arrived intact.
 
-Two files are excluded, and only two:
-  * TREE_SHA256.txt itself, which cannot contain its own digest.
-  * the TOP-LEVEL README.md, whose banner is deliberately worded per location.
-    Nested READMEs are covered.
-
-Regenerate only when a change to the payload is intended and reviewed.
+Excluded, because none of it is payload: this manifest itself, which cannot contain its own
+digest; the .git directory, which is version-control bookkeeping and differs between any two
+clones; and the files the operating system and the interpreter regenerate on their own,
+namely .DS_Store, .pyc and __pycache__.
 """
 import hashlib
 import os

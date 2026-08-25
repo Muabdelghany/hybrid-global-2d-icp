@@ -12,6 +12,13 @@ model/VERIFICATION_CASE.json.
 """
 import collections, hashlib, os, re, shutil, subprocess, sys
 
+def walk(root):
+    """os.walk with .git pruned. Git's object store is not payload: it differs between
+    any two clones of the same tree and would otherwise produce phantom findings."""
+    for d, dirs, fs in os.walk(root):
+        dirs[:] = [x for x in dirs if x != ".git"]
+        yield d, dirs, fs
+
 ROOT = os.path.dirname(os.path.abspath(__file__))
 fail = []
 
@@ -21,7 +28,7 @@ fail = []
 if "--clean" in sys.argv:
     import shutil
     removed = 0
-    for _d, _dirs, _fs in os.walk(ROOT):
+    for _d, _dirs, _fs in walk(ROOT):
         for _x in list(_dirs):
             if _x == "__pycache__":
                 shutil.rmtree(os.path.join(_d, _x), ignore_errors=True)
@@ -46,16 +53,16 @@ print("=" * 74)
 
 # --- 1. no broken symlinks --------------------------------------------------
 broken = [os.path.relpath(os.path.join(d, f), ROOT)
-          for d, _, fs in os.walk(ROOT) for f in fs
+          for d, _, fs in walk(ROOT) for f in fs
           if os.path.islink(os.path.join(d, f)) and not os.path.exists(os.path.join(d, f))]
 broken += [os.path.relpath(os.path.join(d, s), ROOT)
-           for d, ss, _ in os.walk(ROOT) for s in ss
+           for d, ss, _ in walk(ROOT) for s in ss
            if os.path.islink(os.path.join(d, s)) and not os.path.exists(os.path.join(d, s))]
 check("no broken symlinks", not broken, ";".join(broken[:3]))
 
 # --- 2. no build junk -------------------------------------------------------
 junk = []
-for d, ss, fs in os.walk(ROOT):
+for d, ss, fs in walk(ROOT):
     if "__pycache__" in ss: junk.append("__pycache__")
     junk += [f for f in fs if f.endswith((".pyc", ".DS_Store"))]
 check("no __pycache__ / .pyc / .DS_Store", not junk, "%d found" % len(junk))
@@ -90,13 +97,27 @@ check("solver m11 matches the certified md5", got == CERT, got)
 # structurally, the account and host names by hash of the lowercased token.
 _PERSONAL_DIGESTS = frozenset((
     '1f18135415fce41e', '26b47209413e5776', '1adb9f794689b589',   # account, device
-    '8cc7edf34f3c1710', '93236b6b24d75d01', '52c279ad597187db',   # allocation, facility
+    '8cc7edf34f3c1710',                                            # allocation
 ))
+# The facility and its university are named in the paper's own acknowledgements and appear in
+# legitimate bibliographic citations, so the bare names are not a disclosure. What does leak
+# infrastructure is a machine address, so those are matched as hostnames instead.
+_ORGHOST = re.compile(r"(?<![A-Za-z0-9.-])[A-Za-z0-9-]+\.(?:[A-Za-z0-9-]+\.)*"
+                      r"(?:ncsa|illinois)\.edu(?![A-Za-z0-9])")
 _HOMEDIR = re.compile(r"(?:/Users/|/home/|[A-Za-z]:\\\\Users\\\\)([A-Za-z0-9._-]+)")
 _TOKEN6 = re.compile(r"[A-Za-z][A-Za-z0-9]{5,}")
+# Compute-node names are too short for the token matcher above (cn093, gpua031),
+# so they are matched structurally instead.
+_NODENAME = re.compile(r"(?<![A-Za-z0-9])(?:cn|gpua|nid)\d{3,}(?![A-Za-z0-9])")
 _SCAN_EXT = (".py", ".sh", ".sbatch", ".md", ".json", ".yaml", ".yml", ".txt", ".tex", ".csv")
 
 def _personal_hits(text):
+    if _NODENAME.search(text):
+        return True
+    for m in _ORGHOST.finditer(text):
+        # a published archive link is a citation, not infrastructure
+        if not m.group().startswith(("www.ideals.", "ideals.")):
+            return True
     for m in _HOMEDIR.finditer(text):
         user = m.group(1)
         if user not in ("shared", "runner", "opt"):
@@ -107,11 +128,15 @@ def _personal_hits(text):
     return False
 
 abs_hits = []
-for dd, _, fs in os.walk(ROOT):
+for dd, _, fs in walk(ROOT):
     for f in fs:
-        if not f.endswith(_SCAN_EXT): continue
         rel = os.path.relpath(os.path.join(dd, f), ROOT)
         if rel in ("verify_package.py", "TREE_SHA256.txt"): continue
+        # the path itself counts: a node name in a filename is as much a disclosure
+        # as one in the body, and that is exactly how one survived a previous pass
+        if _personal_hits(rel):
+            abs_hits.append(rel); continue
+        if not f.endswith(_SCAN_EXT): continue
         if _personal_hits(open(os.path.join(dd, f), encoding="utf-8", errors="replace").read()):
             abs_hits.append(rel)
 check("no personal, account or facility identifiers", not abs_hits, "; ".join(abs_hits[:3]))
@@ -135,12 +160,12 @@ check("paths quoted in the docs exist", not docs_bad, "; ".join(docs_bad[:3]))
 
 
 # --- 10. checkpoint count -------------------------------------------------
-n_ckpt = sum(1 for d,_,fs in os.walk(os.path.join(ROOT,"ml")) for f in fs if f.endswith(".pt"))
+n_ckpt = sum(1 for d,_,fs in walk(os.path.join(ROOT, "ml")) for f in fs if f.endswith(".pt"))
 check("115 surrogate checkpoints present", n_ckpt == 115, "%d found" % n_ckpt)
 
 # --- 11. no duplicated trainer trees --------------------------------------
 tr = [os.path.relpath(os.path.join(d,f), ROOT)
-      for d,_,fs in os.walk(os.path.join(ROOT,"ml")) for f in fs
+      for d,_,fs in walk(os.path.join(ROOT, "ml")) for f in fs
       if f in ("train_ensemble.py","train_species.py","species_loader.py")]
 dup = [n for n,c in collections.Counter(os.path.basename(x) for x in tr).items() if c > 1]
 check("no duplicated trainer copies", not dup, ",".join(dup))
@@ -230,7 +255,7 @@ def _digest_hit(text):
     return False
 
 hits = []
-for d, dirs, fs in os.walk(ROOT):
+for d, dirs, fs in walk(ROOT):
     dirs[:] = [x for x in dirs if x != "__pycache__"]
     for f in fs:
         fp = os.path.join(d, f)
@@ -290,7 +315,7 @@ else:
 # a common artefact of copy-and-paste, so this check keeps the style uniform.
 _BOX = set("\u2500\u2550\u2501\u2502\u2503\u250c\u2510\u2514\u2518\u251c\u2524")
 box_hits = []
-for dd, _, fs in os.walk(ROOT):
+for dd, _, fs in walk(ROOT):
     for f in fs:
         if not f.endswith((".py", ".sh", ".sbatch", ".md")): continue
         rel = os.path.relpath(os.path.join(dd, f), ROOT)
@@ -337,7 +362,7 @@ import re as _re
 # SF6, figure06a and an external version such as v10.6 are not.
 _VER = _re.compile(r"(?:^|[^A-Za-z0-9.])(?:[vV][2-9]|6[a-d]|V6R)(?:[^A-Za-z0-9.]|$)")
 ver_hits = []
-for dd, _, fs in os.walk(ROOT):
+for dd, _, fs in walk(ROOT):
     # ml/ is exempt. The trainer names its architectures and recipes with short tags
     # ("E1_v4_recipe", "surrogate_lxcat_v4_arch"); some are dictionary keys that select a
     # model, and the archived run records carry the same tags. They identify a training
@@ -359,6 +384,30 @@ for dd, _, fs in os.walk(ROOT):
         if _VER.search(body) or _VER.search(rel):
             ver_hits.append(rel)
 check("no internal version labels", not ver_hits, "; ".join(ver_hits[:3]))
+
+# --- the plotted values must actually contain values ---------------------------
+# Resolving a path proves a file exists, not that it holds anything. A CSV of nothing
+# but commas passed every other check here, so this one reads the cells: each file needs
+# at least one data row, and no column may be entirely empty.
+import csv as _csv
+empty = []
+_pv = os.path.join(ROOT, "data", "plotted_values")
+for dd, _, fs in walk(_pv):
+    for f in sorted(fs):
+        if not f.endswith(".csv"): continue
+        rel = os.path.relpath(os.path.join(dd, f), ROOT)
+        try:
+            rows = list(_csv.reader(open(os.path.join(dd, f), encoding="utf-8")))
+        except (UnicodeDecodeError, OSError):
+            empty.append("%s unreadable" % rel); continue
+        if len(rows) < 2:
+            empty.append("%s has no data rows" % rel); continue
+        ncol = len(rows[0])
+        for c in range(1, ncol):
+            col = [r[c].strip() for r in rows[1:] if len(r) > c]
+            if col and all(v in ("", "nan") for v in col):
+                empty.append("%s column %r is empty" % (rel, rows[0][c][:30])); break
+check("plotted values are populated", not empty, "; ".join(empty[:3]))
 
 print("=" * 74)
 print("%d check(s) failed" % len(fail) if fail else "all checks passed")

@@ -197,5 +197,5 @@
  "processor": "x86_64",
  "dedicated": true,
  "omp_num_threads": "4",
- "headline_reference": "delta_cpu.json (12.33 s, 1750x; node cluster-cpu-node, std 0.13) is the manuscript baseline; this instrumented rerun on node cluster-cpu-node gives 13.93 s (std 0.64), ~13%% higher -- a node-to-node spread on the shared cpu partition. The manuscript retains the lower, tighter cluster-cpu-node figure, which yields the more conservative speedup (a higher solver time would only raise it). The convergence certificate is identical to the workstation, confirming it is platform-independent."
+ "headline_reference": "cluster_cpu.json (12.33 s, 1750x; node cluster-cpu-node, std 0.13) is the manuscript baseline; this instrumented rerun on node cluster-cpu-node gives 13.93 s (std 0.64), ~13%% higher -- a node-to-node spread on the shared cpu partition. The manuscript retains the lower, tighter cluster-cpu-node figure, which yields the more conservative speedup (a higher solver time would only raise it). The convergence certificate is identical to the workstation, confirming it is platform-independent."
 }

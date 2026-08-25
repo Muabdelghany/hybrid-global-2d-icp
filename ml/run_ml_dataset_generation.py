@@ -9,7 +9,7 @@ Training grid (220 operating points):
   * gamma_Al = 0.155 (calibrated), lambda_exp = 3.20 (inert under the
     f_e_bias closure), R_coil = 0.8
 
-Two rate modes are generated (to reproduce main.pdf's legacy-vs-LXCat split):
+Two rate modes are generated, the legacy-vs-LXCat split reported in the paper:
 
   --mode legacy  : Maxwellian Arrhenius (use_boltzmann_rates=False, default)
   --mode lxcat   : Tier-2 PINN Biagi-v10.6 (use_boltzmann_rates=True)
@@ -28,7 +28,7 @@ from itertools import product
 from multiprocessing import Pool
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-# PACKAGING NOTE: this is the production copy (md5 05e77aa61919223bf98aef0eda956631,
+# This is the production copy (md5 05e77aa61919223bf98aef0eda956631,
 # the production tree's scripts/ directory), the script that generated the deployed
 # 220-case dataset. Only PROJECT_ROOT is changed: the solver lives in model/ here.
 # Override with DTPM_MODEL_ROOT for a solver tree elsewhere.

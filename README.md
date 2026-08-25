@@ -42,7 +42,8 @@ What is here is what they were drawn from, so you can check it or redraw it howe
 data/
   plotted_values/   one directory per figure: the plotted numbers as CSV
   reference_case/   the published reference solve: 1000 W, 10 mTorr, 30% Ar, bias on
-                      25 field arrays on the (r,z) mesh + summary.json
+                      25 field arrays on the (r,z) mesh, mesh.npz with the coordinates,
+                      summary.json, and a README explaining how to plot them
   composition_scan/ the four-arm SF6 composition study (90% and 30%, bias on and off)
   parameter_sweeps/ power and pressure sweeps
   mesh_convergence/ the four-grid resolution study
@@ -75,7 +76,7 @@ cluster/          the batch scripts the studies were submitted with
 |---|---|
 | 1, 4, 5, 19 | schematics and flowcharts; nothing behind them to publish |
 | 2, 3 | the 0D benchmark: our solve in `data/benchmark_0d_model/`, the published comparison in `data/benchmark_0d_reference/`, both flat CSV |
-| 6, 9, 10 | two-dimensional field maps; the plotted quantity *is* the `.npy` array in `data/reference_case/` |
+| 6, 9, 10 | two-dimensional field maps; the plotted quantity *is* the `.npy` array in `data/reference_case/`, with `mesh.npz` giving the coordinates |
 | 7, 8, 11–18, 20–27, S1 | CSV of the plotted curves in `data/plotted_values/figureNN/` |
 
 Where a figure plots a field map rather than a curve, exporting it to CSV would lose the mesh, so
@@ -118,7 +119,15 @@ python scripts/run_one_verification_case.py \
 A converged solve takes three to four minutes on one core and writes `summary.json` plus 25 field
 arrays. Compare against `model/VERIFICATION_CASE.json`, which holds the expected scalars to full
 precision and a SHA-256 digest of each array. With BLAS pinned to one thread, as above, the
-digests should match exactly.
+digests should match exactly. To check:
+
+```python
+import json, hashlib, os
+ref = json.load(open("model/VERIFICATION_CASE.json"))
+bad = [f for f, h in ref["field_arrays_sha256"].items()
+       if hashlib.sha256(open(os.path.join("/tmp/dtpm_check", f), "rb").read()).hexdigest() != h]
+print("mismatched arrays:", bad or "none")
+```
 
 **This point is not the published reference dataset.** The runs behind figures 6, 9, 10, 11 and
 12 are at **30% Ar**, and sit in `data/reference_case/`. Change `--x-ar` to `0.30` to solve that
@@ -148,8 +157,9 @@ signatures alone.
 ## The surrogate
 
 `ml/` holds the training code and all 115 trained checkpoints: five seeds for each of the
-two-species models, and five seeds for each of 21 single-species channels. Every reported metric
-can be recomputed from the weights without retraining. `data/surrogate/split_manifest.json`
+two-species models, and five seeds for each of 21 single-species channels. Inference metrics can
+be recomputed from the weights directly; anything that needs the validation targets also needs
+the training dataset, which is not shipped and is regenerated as described below. `data/surrogate/split_manifest.json`
 records the exact case-level train and validation split.
 
 The 220-case solver dataset the networks were trained on is not included, being 346 MB of derived
@@ -203,5 +213,8 @@ repository.
 
 ## Citing
 
-Cite the paper. If you need to refer to this repository specifically, cite it by its archived
-DOI.
+Cite the paper; `CITATION.cff` carries the metadata. This repository is archived on Zenodo, and
+the archived snapshot carries its own DOI. Until the paper appears, that DOI is recorded in the
+paper's data availability statement rather than here, because the archive is created at
+acceptance. If you have reached this repository before then and need to cite it, cite the paper
+and note the commit you used.

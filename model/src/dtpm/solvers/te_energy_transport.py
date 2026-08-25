@@ -7,7 +7,7 @@ algebraic* balance cell by cell::
 
     ne * nSF6 * k_iz(Te) * eps_T(Te) * e  =  P_rz(r,z)
 
-That equation has two structural defects:
+That equation has two structural limitations:
 
 1. **No root where the power vanishes.**  The left side is strictly positive
    for any Te > 0, so as P_rz -> 0 (the whole downstream processing chamber)
@@ -23,7 +23,7 @@ That equation has two structural defects:
    a 0D model where the walls are lumped in, but applying them in every
    interior cell charges cells for walls they never touch.
 
-Both defects are structural rather than numerical: a purely local balance has no
+Both limitations are structural rather than numerical: a purely local balance has no
 mechanism to transport energy from where it is deposited to where it is lost, so
 the cold, power-free region is unreachable.
 
@@ -354,7 +354,7 @@ def energy_balance(Te, ne, species, mesh, inside, P_rz, config,
         'n_cells': int(np.sum(inside)),
         # RELATIVE tolerance: an exact >= TE_MAX-1e-6 test reads 0.0% for a field
         # pinned at 24.99982 eV -- the same asymptotic blind spot as the 3.0 eV
-        # defect this module replaces.
+        # limitation this module replaces.
         'frac_at_clamp': float(np.mean(Ti >= TE_MAX * (1.0 - 1e-3))),
         'frac_near_clamp_1pct': float(np.mean(Ti >= TE_MAX * 0.99)),
         'P_source_W': P_src,

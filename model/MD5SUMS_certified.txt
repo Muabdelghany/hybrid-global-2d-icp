@@ -37,7 +37,7 @@ f2306b83be7f760b822cbac3e6064929  src/dtpm/solvers/boltzmann_pinn.py
 e1c4798740308590d990abd0c4a99e72  src/dtpm/solvers/pic_solver.py
 9bb61155a5d85155a40fc153014bfc5e  src/dtpm/solvers/poisson.py
 ce50db70c45a61dc18840f4e9014515d  src/dtpm/solvers/species_transport.py
-c96fe9de61e5c5c29d548a284bebdba5  src/dtpm/solvers/te_energy_transport.py
+e747f9f5040a669ed4d83c8c06edf906  src/dtpm/solvers/te_energy_transport.py
 26ccc99f265dd58f6cdfcc4ea26498fe  src/dtpm/utils/__init__.py
 f13cc5dd712a05bf451f16a47919bfe4  src/dtpm/utils/phase1_plots.py
 3f1ca4c9644105a76c4cab0cfa7c1f24  src/dtpm/utils/plotting.py

@@ -9,7 +9,7 @@
 #SBATCH --time=03:30:00
 #SBATCH --output=%x-%j.out
 #SBATCH --error=%x-%j.out
-# GATED power-balance rerun (reviewer P0 repair): the outer loop now certifies
+# Gated power-balance run: the outer loop certifies
 # on the emergent absorbed fraction eta_eff=P_abs/P_rf (fed to solve_0D AND
 # gated), requiring inner ne-convergence + a saved-field energy balance.
 #  leg_gated  = Maxwellian POSITIVE CONTROL (must converge)

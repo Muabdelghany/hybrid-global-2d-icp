@@ -30,7 +30,7 @@ os.environ['MPLBACKEND'] = 'Agg'
 R_PROC, Z_TOP = 0.105, 0.234
 
 # Uses the local ml_dataset_loader rather than an external dataset module
-# layout from main.pdf. The mode (legacy|lxcat) is selected via env var.
+# layout described in the paper. The mode (legacy|lxcat) is selected via env var.
 from ml_dataset_loader import load_dataset as _load_dataset_impl
 _ML_MODE = os.environ.get('ML_DATASET_MODE', 'legacy')
 OUT = os.path.join(REPO, 'results', f'ml_arch_sweep_{_ML_MODE}')

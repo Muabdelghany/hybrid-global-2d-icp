@@ -134,7 +134,7 @@
  "speedup_vs_lxcat_solver": 50.87153234171141,
  "superseded_by": {
   "note": "NOT the published 21-channel timing. This is an earlier measurement on the the cluster CPU node cluster-cpu-node; the paper reports the matched-baseline GPU/workstation numbers.",
-  "published_delta": "data/surrogate/inference_timing_21ch_cluster.json (cluster-gpu-node, A100: 135.17 ms/eval, 91.2x vs legacy solver)",
+  "published_cluster": "data/surrogate/inference_timing_21ch_cluster.json (cluster-gpu-node, A100: 135.17 ms/eval, 91.2x vs legacy solver)",
   "published_workstation": "data/surrogate/inference_timing_21ch_workstation.json (M1 MPS: 133.96 ms/eval, 55.3x vs legacy solver)",
   "why_it_differs": "measured before the 2026-07-22 matched-per-platform baseline recompute, and on a different device; retained as a run artifact of record only.",
   "stamped": "2026-08-22"

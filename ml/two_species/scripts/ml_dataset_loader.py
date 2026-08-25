@@ -1,6 +1,6 @@
 """Loader for the ML dataset layout.
 
-Drop-in replacement for `load_dataset()` used by the main.pdf training scripts
+Drop-in replacement for `load_dataset()` used by the training scripts
 (lxcat_arch_upgrade.py, ablation_study.py, train_lxcat_v4_ensemble.py).
 
 The dataset layout (produced by scripts/run_ml_dataset_generation.py) is:

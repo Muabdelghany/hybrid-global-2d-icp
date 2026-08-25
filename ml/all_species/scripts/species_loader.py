@@ -14,7 +14,7 @@ from typing import Tuple
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-# PACKAGING NOTE (reproducibility package): upstream this reached across the
+# In the original layout this reached across the
 # pipeline tree to the two-species scripts/ml directory, a path
 # that no longer exists. In this package the two-species loader sits beside us.
 SIXB_ML = os.path.abspath(os.path.join(HERE, "..", "..", "two_species", "scripts"))
