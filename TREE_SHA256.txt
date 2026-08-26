@@ -1,9 +1,9 @@
 # Whole-payload SHA-256 manifest for this package.
 # Covers every file except this manifest, .git, .DS_Store and .pyc (see make_tree_manifest.py).
 # Verify with:  python3 make_tree_manifest.py --check
-# payload-digest 4380647cfd924f8913230dcbd62528fd3fc404811fa68058c910080e564118d7
+# payload-digest 665067954d1e48cbc6b704c85c08299ba427dbfb8ff3229d640166c6b50d46c3
 6283f4f9ee43363f61729c019b410a3f8a494ec7e44782af0db5b2c47082aea6  .gitignore
-6b6e8dbdb439f656ae7ff280508b16a81ef26f5e0c556d7c594bf7e6fb3e8035  CITATION.cff
+e0e77241264b4df50369eb9d2a4aab3a908d60f91a74a96ecc3780d5ae429df9  CITATION.cff
 0a7ff1717e0d2e183887ffd6ff9904fd14cc6552f0d34bdf613829cb8e62aef8  FIGURE_DATA.md
 9ed41f150c5d8be5c4037454f84b56fae594333ffefdb232f3ec63dae0d39bbe  LICENSE
 24e1e842dc0857f1b8060b68f77e288e9e814161dee2797a0ce56c887655f791  LICENSE-DATA
