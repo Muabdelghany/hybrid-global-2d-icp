@@ -1,5 +1,7 @@
 # A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22116275.svg)](https://doi.org/10.5281/zenodo.22116275)
+
 Data and model code accompanying:
 
 > **A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with
@@ -214,4 +216,5 @@ repository.
 ## Citing
 
 Cite the paper; `CITATION.cff` carries the metadata. To refer to this repository specifically,
-cite the paper and give the commit you used.
+cite the archived deposit: **10.5281/zenodo.22116275**, which resolves to the latest version.
+The release accompanying the paper is **10.5281/zenodo.22116276**.

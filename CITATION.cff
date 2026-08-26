@@ -22,6 +22,14 @@ authors:
 # the abstract above.
 license: MIT
 license-url: "https://opensource.org/licenses/MIT"
+doi: "10.5281/zenodo.22116275"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22116275"
+    description: "Concept DOI, resolving to the latest version"
+  - type: doi
+    value: "10.5281/zenodo.22116276"
+    description: "The v1.0 release accompanying the paper"
 keywords:
   - inductively coupled plasma
   - plasma etching
