@@ -17,9 +17,11 @@ authors:
   - family-names: Qerimi
     given-names: Dren
     orcid: "https://orcid.org/0000-0001-5753-4474"
-license:
-  - MIT
-  - CC-BY-4.0
+# Zenodo maps this to a single licence field on the record, so it names the code
+# licence only. The data and trained weights are CC BY 4.0; see LICENSE-DATA and
+# the abstract above.
+license: MIT
+license-url: "https://opensource.org/licenses/MIT"
 keywords:
   - inductively coupled plasma
   - plasma etching
