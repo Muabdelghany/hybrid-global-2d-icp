@@ -1,5 +1,7 @@
 # Figure 25: rate coefficients against reduced field
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 Three channels, one file each: ionization, attachment and dissociation. Each file gives the
 rate coefficient against reduced field E/N for three gas compositions, computed two ways: with
 a Maxwellian electron energy distribution and with a two-term Boltzmann solution.

@@ -1,5 +1,7 @@
 # Neural-network surrogate: training code and deployed weights
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 Everything needed to inspect, re-run or re-train the surrogate reported in section 5
 of the manuscript.
 

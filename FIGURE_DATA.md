@@ -1,5 +1,7 @@
 # Figure data index
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 One row per figure in the manuscript, giving the numbers behind it and where the underlying
 solver output sits. The figures themselves are in the paper; this repository holds what they
 were drawn from.

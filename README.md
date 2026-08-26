@@ -1,4 +1,4 @@
-# A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers
+# A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration
 
 Data and model code accompanying:
 

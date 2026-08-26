@@ -1,5 +1,7 @@
 # The solver
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 `src/dtpm/` is the production source for the hybrid global–2D model, together with the
 configuration it ran under and two driver scripts. This is the code that produced the results in
 the paper.

@@ -1,5 +1,7 @@
 # Figure S1: joint identifiability of gamma_Al and f_e,bias
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 Three panels, one CSV each.
 
 **panel_a** is the best-fit ridge of the joint calibration residual: for each value of f_e,bias,

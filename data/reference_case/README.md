@@ -1,5 +1,7 @@
 # Reference case
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 The published reference solve: 1000 W, 10 mTorr, 30% Ar, bias on at 200 W, under the production
 closure. The runs behind figures 6, 9, 10, 11 and 12 come from here.
 

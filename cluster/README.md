@@ -1,5 +1,7 @@
 # Cluster jobs
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 These are the batch scripts as submitted rather than tidied rewrites. Every solver and
 machine-learning result in the paper came from one of them, so the resource requests, the flag
 strings and the job structure are the real ones. The jobs ran on a Slurm cluster. Account and

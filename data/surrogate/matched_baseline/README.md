@@ -1,5 +1,7 @@
 # Matched solver-baseline records (speedup denominator)
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 The manuscript speedups (Section 5.3, Table 5, abstract) are `solver_time / inference_time`,
 per platform. This directory holds the **solver-time** denominator; the inference times are in
 `../inference_timing*.json`.

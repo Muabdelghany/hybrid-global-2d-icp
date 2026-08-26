@@ -1,5 +1,7 @@
 # Plotted values, one directory per figure
 
+Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+
 Each directory is named for its manuscript figure and holds the numbers that figure draws, as
 plain CSV. Nothing here needs to be run. The first column is the abscissa; every other column is
 one plotted series, named for its legend entry, with units in the header. Where a figure has
