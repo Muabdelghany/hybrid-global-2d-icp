@@ -1,37 +1,37 @@
 {
-  "label": "surrogate_lxcat_v4_arch",
+  "label": "surrogate_legacy_v4_arch",
   "winner_experiment": "E3_separate_heads",
   "architecture": "SeparateHeadsMLP (shared trunk + per-species heads)",
   "training_recipe": "v4 (physics reg + bias init + 2000 epochs)",
-  "device": "mps",
+  "device": "cuda",
   "n_cases": 220,
   "n_ensemble": 5,
   "n_epochs": 2000,
-  "train_time_s": 48052.40879893303,
+  "train_time_s": 3475.4542195796967,
   "ensemble_vals": [
-    0.00014922342961654067,
-    9.85330407274887e-05,
-    0.00012142059858888388,
-    0.00010898411710513756,
-    9.889794455375522e-05
+    0.00016491211135871708,
+    0.00011788991105277091,
+    0.00021466265025082976,
+    0.00010922076035058126,
+    0.0001070704820449464
   ],
-  "ens_mean": 0.0001154118261183612,
-  "ens_std": 1.885866910192898e-05,
+  "ens_mean": 0.00014275118301156908,
+  "ens_std": 4.166017372602771e-05,
   "metrics": {
     "nF": {
-      "rmse": 0.004477032460272312,
-      "mae": 0.003307443344965577,
-      "max_err": 0.031887054443359375,
-      "ens_spread": 0.0024688069242984056
+      "rmse": 0.005405968986451626,
+      "mae": 0.0026139626279473305,
+      "max_err": 0.044948577880859375,
+      "ens_spread": 0.002245016861706972
     },
     "nSF6": {
-      "rmse": 0.0039190552197396755,
-      "mae": 0.0026877140626311302,
-      "max_err": 0.019067764282226562,
-      "ens_spread": 0.0017737996531650424
+      "rmse": 0.007569795474410057,
+      "mae": 0.00413484824821353,
+      "max_err": 0.04514884948730469,
+      "ens_spread": 0.003075958928093314
     }
   },
-  "rate_source": "lxcat",
+  "rate_source": "legacy",
   "selection": {
     "method": "Lowest nF RMSE mean across 3 seeds in architecture sweep",
     "sweep_nF_rmse": 0.00542,
@@ -67,18 +67,19 @@
     "vs_surrogate_v4": {
       "v4_nF_rmse": 0.0029,
       "v4_nSF6_rmse": 0.0027,
-      "this_nF_rmse": 0.004477032460272312,
-      "this_nSF6_rmse": 0.0039190552197396755,
-      "nF_ratio": 1.543804296645625,
-      "nSF6_ratio": 1.4515019332369168
+      "this_nF_rmse": 0.005405968986451626,
+      "this_nSF6_rmse": 0.007569795474410057,
+      "nF_ratio": 1.8641272367074573,
+      "nSF6_ratio": 2.803627953485206
     },
     "vs_surrogate_lxcat_v3": {
       "v3_nF_rmse": 0.0112,
       "v3_nSF6_rmse": 0.0081,
-      "this_nF_rmse": 0.004477032460272312,
-      "this_nSF6_rmse": 0.0039190552197396755,
-      "nF_improvement": 0.6002649589042578,
-      "nSF6_improvement": 0.516166022254361
+      "this_nF_rmse": 0.005405968986451626,
+      "this_nSF6_rmse": 0.007569795474410057,
+      "nF_improvement": 0.5173241976382477,
+      "nSF6_improvement": 0.06545734883826451
     }
-  }
+  },
+  "metadata_note": "rate_source/label corrected 2026-07-20 from hardcoded lxcat strings in train_ensemble.py (cosmetic metadata only); dataset provenance is established by the loader path (ML_DATASET_MODE=legacy), the preflight gate, and the independent re-evaluation in fig8a_dump_and_baselines.py"
 }

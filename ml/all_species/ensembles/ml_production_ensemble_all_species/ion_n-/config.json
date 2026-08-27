@@ -8,7 +8,7 @@
   "trunk_width": 128,
   "head_layers": 2,
   "head_width": 64,
-  "output_bias_init": 17.075429916381836,
+  "output_bias_init": 17.07379722595215,
   "seeds": [
     42,
     179,

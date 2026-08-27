@@ -1,6 +1,6 @@
 {
   "species": "Te",
-  "label": "surrogate_lxcat_v4_arch_Te",
+  "label": "surrogate_legacy_v4_arch_Te",
   "winner_experiment": "E3_separate_heads (single-head)",
   "architecture": "SingleHeadMLP (3\u00d7128 trunk + skip + 2\u00d764 head)",
   "training_recipe": "v4 per-species (physics reg + bias init + 2000 epochs)",
@@ -8,22 +8,22 @@
   "n_cases": 220,
   "n_ensemble": 5,
   "n_epochs": 2000,
-  "train_time_s": 2871.7537083625793,
+  "train_time_s": 2777.464057445526,
   "ensemble_vals": [
-    0.7415969371795654,
-    0.694568932056427,
-    0.7399342060089111,
-    0.6996777653694153,
-    0.7304317951202393
+    4.5892345951870084e-05,
+    4.037208418594673e-05,
+    5.559273267863318e-05,
+    5.777937258244492e-05,
+    5.65050431760028e-05
   ],
-  "ens_mean": 0.7212419271469116,
-  "ens_std": 0.02012283844846166,
+  "ens_mean": 5.122831571497954e-05,
+  "ens_std": 6.872243746202464e-06,
   "metrics": {
-    "rmse": 0.00938389077782631,
-    "mae": 0.0012434023665264249,
-    "max_err": 0.33185720443725586,
-    "ens_spread": 0.0010979233775287867
+    "rmse": 0.0015837776008993387,
+    "mae": 0.0009191181161440909,
+    "max_err": 0.010543346405029297,
+    "ens_spread": 0.000881387444678694
   },
-  "rate_source": "lxcat",
-  "output_bias_init": 0.47790461778640747
+  "rate_source": "legacy",
+  "output_bias_init": 0.6589546799659729
 }

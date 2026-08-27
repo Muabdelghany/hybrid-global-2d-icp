@@ -54,9 +54,17 @@ operating grid (`model/`), then assembled by `ml_dataset_loader.py`. The split i
 recorded in `data/surrogate/split_manifest.json`, so the exact train/validation
 partition can be reconstructed without the raw files.
 
-## A note on labels in the run records
+## What the run records say, and how to check them
 
-The `summary.json` and `config.json` files beside each set of weights are the records the
-training runs wrote. They carry the architecture label the trainer used at the time,
-`surrogate_lxcat_v4_arch`, and a comparison against its predecessor. Those strings are run
-provenance and are left exactly as recorded; they are not a version of this repository.
+Each set of weights ships with the `summary.json` and `config.json` its training run wrote.
+Those are the primary provenance: `rate_source` names the corpus the run trained on, and
+`metrics.rmse` is the ensemble-mean validation RMSE on log10 density that the paper reports.
+
+Both deployed ensembles record `rate_source: legacy`, the Maxwellian-averaged (Lallement) rate
+set described in section 5.2. Their metrics reconcile with the paper exactly: the two-species
+pair against `data/surrogate/split_manifest.json`, and all 21 channels against
+`data/surrogate/ml21_channel_metrics.json`. `verify_package.py` checks both.
+
+`two_species/ensembles/ml_production_ensemble_lxcat/` is a variant trained on the Boltzmann-rate
+corpus. It is kept for comparison and is **not** reported in the paper, which describes the 110
+deployed checkpoints: five seeds for the two-species model and five for each of 21 channels.

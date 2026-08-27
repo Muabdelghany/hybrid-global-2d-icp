@@ -1,6 +1,6 @@
 {
   "species": "ion_SF3+",
-  "label": "surrogate_lxcat_v4_arch_ion_SF3+",
+  "label": "surrogate_legacy_v4_arch_ion_SF3+",
   "winner_experiment": "E3_separate_heads (single-head)",
   "architecture": "SingleHeadMLP (3\u00d7128 trunk + skip + 2\u00d764 head)",
   "training_recipe": "v4 per-species (physics reg + bias init + 2000 epochs)",
@@ -8,22 +8,22 @@
   "n_cases": 220,
   "n_ensemble": 5,
   "n_epochs": 2000,
-  "train_time_s": 2850.455988883972,
+  "train_time_s": 2816.2206571102142,
   "ensemble_vals": [
-    8.903859270503744e-05,
-    0.00012205763778183609,
-    0.00021066231420263648,
-    0.00012495410919655114,
-    0.0001645916054258123
+    0.00015040513244457543,
+    7.511529111070558e-05,
+    0.00017336323799099773,
+    0.00012654233432840556,
+    0.00011320995690766722
   ],
-  "ens_mean": 0.0001422608518623747,
-  "ens_std": 4.175577726660854e-05,
+  "ens_mean": 0.0001277271905564703,
+  "ens_std": 3.339791548618893e-05,
   "metrics": {
-    "rmse": 0.0038573103956878185,
-    "mae": 0.0023224486503750086,
-    "max_err": 0.08017826080322266,
-    "ens_spread": 0.0029519102536141872
+    "rmse": 0.004301861859858036,
+    "mae": 0.002455292269587517,
+    "max_err": 0.037109375,
+    "ens_spread": 0.002266394905745983
   },
-  "rate_source": "lxcat",
-  "output_bias_init": 16.408496856689453
+  "rate_source": "legacy",
+  "output_bias_init": 16.798606872558594
 }

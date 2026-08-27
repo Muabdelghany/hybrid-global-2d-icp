@@ -469,6 +469,33 @@ else:
         _mesh_bad.append("could not import the solver mesh (%s)" % _e)
 check("shipped mesh matches the solver", not _mesh_bad, "; ".join(_mesh_bad[:2]))
 
+# --- deployed weights reconcile with the metrics the paper reports ----------
+# The archive ships checkpoints AND the metrics the paper quotes. If a superseded
+# generation of weights is ever staged here, the two stop agreeing, which is exactly
+# the failure this check exists to catch.
+import json as _json
+recon = []
+try:
+    _sm = _json.load(open(os.path.join(ROOT, "data/surrogate/split_manifest.json")))
+    _want = _sm["sanity_rmse_ensemble_mean"]
+    _got = _json.load(open(os.path.join(
+        ROOT, "ml/two_species/ensembles/ml_production_ensemble_legacy/summary.json")))["metrics"]
+    for _sp in ("nF", "nSF6"):
+        if abs(_got[_sp]["rmse"] - _want[_sp]) > 1e-9:
+            recon.append("two-species %s: %.9f vs %.9f" % (_sp, _got[_sp]["rmse"], _want[_sp]))
+    _ch = _json.load(open(os.path.join(ROOT, "data/surrogate/ml21_channel_metrics.json")))
+    for _sp, _v in _ch.items():
+        _f = os.path.join(ROOT, "ml/all_species/ensembles/ml_production_ensemble_all_species",
+                          _sp, "summary.json")
+        if not os.path.exists(_f):
+            recon.append("channel %s: summary missing" % _sp); continue
+        _r = _json.load(open(_f))["metrics"]["rmse"]
+        if abs(_r - _v["rmse"]) > 1e-9:
+            recon.append("channel %s: %.9f vs %.9f" % (_sp, _r, _v["rmse"]))
+except (OSError, KeyError, ValueError) as _e:
+    recon.append("could not compare: %s" % _e)
+check("deployed weights match the published metrics", not recon, "; ".join(recon[:3]))
+
 print("=" * 74)
 print("%d check(s) failed" % len(fail) if fail else "all checks passed")
 sys.exit(1 if fail else 0)
