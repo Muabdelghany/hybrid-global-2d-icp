@@ -1,6 +1,6 @@
 # Material that originates elsewhere
 
-Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+Part of the data repository for *A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network surrogate acceleration*.
 
 Most of this repository is our own output and is covered by the licences in `LICENSE` and
 `LICENSE-DATA`. The items below are **not**: they originate elsewhere and remain under the terms

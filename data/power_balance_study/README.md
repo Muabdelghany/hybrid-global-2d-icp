@@ -1,6 +1,6 @@
 # Constrained power balance: the sustainment test
 
-Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+Part of the data repository for *A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network surrogate acceleration*.
 
 The study behind the sustainment result in section 5.5. It asks whether the discharge sustains
 when the electron kinetics come from a two-term Boltzmann solution on the Biagi cross sections

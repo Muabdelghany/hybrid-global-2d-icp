@@ -1,4 +1,4 @@
-# A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration
+# A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network surrogate acceleration
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22116275.svg)](https://doi.org/10.5281/zenodo.22116275)
 

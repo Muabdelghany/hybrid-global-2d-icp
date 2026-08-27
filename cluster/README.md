@@ -1,6 +1,6 @@
 # Cluster jobs
 
-Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+Part of the data repository for *A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network surrogate acceleration*.
 
 These are the batch scripts as submitted rather than tidied rewrites. Every solver and
 machine-learning result in the paper came from one of them, so the resource requests, the flag

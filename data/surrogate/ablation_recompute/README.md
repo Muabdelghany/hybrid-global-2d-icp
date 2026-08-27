@@ -1,7 +1,6 @@
 # Ablation recompute (not reported in the paper)
 
-Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma
-etchers with neural-network acceleration*.
+Part of the data repository for *A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network surrogate acceleration*.
 
 `ml_ablation_legacy_ablation_results.json` is an additional run of the training-recipe ablation
 on the legacy corpus. It is **not** the ablation the paper reports.

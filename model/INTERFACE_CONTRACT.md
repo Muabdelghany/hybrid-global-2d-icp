@@ -1,6 +1,6 @@
 # The 0D <-> 2D interface — what actually crosses it
 
-Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+Part of the data repository for *A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network surrogate acceleration*.
 
 Derived by tracing data flow through this certified tree rather than from the call
 signatures, which are easy to misread: the arguments that look like 2D feedback are in

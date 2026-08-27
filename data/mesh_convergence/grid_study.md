@@ -1,6 +1,6 @@
 # Mesh-convergence study
 
-Part of the data repository for *A hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network acceleration*.
+Part of the data repository for *A self-consistent hybrid global–2D model for SF₆/Ar inductively coupled plasma etchers with neural-network surrogate acceleration*.
 
 Condition: 700 W / 10 mTorr / 100% SF6 (frac_Ar=0.00), beta_r=1.2.
 
