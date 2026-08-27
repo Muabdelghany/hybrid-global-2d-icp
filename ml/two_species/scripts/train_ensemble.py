@@ -424,7 +424,7 @@ def main():
         }
 
     summary = {
-        'label': 'surrogate_lxcat_v4_arch',
+        'label': f'surrogate_{_ML_MODE}_v4_arch',
         'winner_experiment': winner_name,
         'architecture': arch_label,
         'training_recipe': 'v4 (physics reg + bias init + 2000 epochs)',
@@ -437,7 +437,7 @@ def main():
         'ens_mean': float(np.mean(vals_list)),
         'ens_std': float(np.std(vals_list)),
         'metrics': metrics,
-        'rate_source': 'lxcat',
+        'rate_source': _ML_MODE,
         'selection': {
             'method': 'Lowest nF RMSE mean across 3 seeds in architecture sweep',
             'sweep_nF_rmse': winner['nF_rmse_mean'],

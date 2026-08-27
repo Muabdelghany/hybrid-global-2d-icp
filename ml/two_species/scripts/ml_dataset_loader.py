@@ -40,33 +40,19 @@ DATASET_BASE = os.environ.get(
 R_PROC = 0.105      # processing-chamber radius [m]
 Z_TOP = 0.234       # full domain height (L_proc + L_apt + L_icp + margin) [m]
 
+# The solver tree. In this package it is model/, two levels above this scripts/ dir.
+MODEL_ROOT = os.environ.get(
+    'DTPM_MODEL_ROOT',
+    os.path.abspath(os.path.join(HERE, '..', '..', '..', 'model')))
+
 _MESH_CACHE = None   # populated by _load_mesh()
 
 
-def _load_mesh():
-    """Build mesh + inside mask via the same code path the simulations used."""
-    global _MESH_CACHE
-    if _MESH_CACHE is not None:
-        return _MESH_CACHE
-
-    sys.path.insert(0, os.path.join(PROJECT_ROOT, 'src'))
-    sys.path.insert(0, os.path.join(PROJECT_ROOT, 'scripts'))
-    from dtpm.core.config import SimulationConfig
-    from dtpm.core.mesh import Mesh2D
-    from dtpm.core.geometry import build_geometry_mask
-
-    # PROJECT_ROOT is this scripts tree's parent, which holds no config/ in this package.
-    # The solver config lives under model/; DTPM_MODEL_ROOT overrides for other layouts.
-    _model_root = os.environ.get(
-        'DTPM_MODEL_ROOT',
-        os.path.abspath(os.path.join(HERE, '..', '..', '..', 'model')))
-    config_path = os.path.join(_model_root, 'config', 'default_config.yaml')
-    config = SimulationConfig(config_path)
 def _reactor_geometry(cfg):
     """Reactor-geometry section, located by content rather than by section name.
 
-    Generators marked [dtpm] read their config from the external pipeline tree, whose
-    section carries a different key. Matching on the fields avoids recording that name.
+    A configuration written against an earlier section name still loads: the fields
+    identify the section, so the key it happens to carry does not matter.
     """
     sec = getattr(cfg, "reactor_geometry", None)
     if sec:
@@ -82,6 +68,40 @@ def _reactor_geometry(cfg):
             if isinstance(value, dict) and {"R_icp", "R_proc"} <= set(value):
                 return value
     return {}
+
+
+def _load_mesh():
+    """Build the mesh and inside mask through the same code path the runs used.
+
+    The solver lives under model/ in this package, not beside this scripts/ tree, so
+    the import path and the config are taken from MODEL_ROOT. Set DTPM_MODEL_ROOT to
+    point elsewhere.
+    """
+    global _MESH_CACHE
+    if _MESH_CACHE is not None:
+        return _MESH_CACHE
+
+    sys.path.insert(0, os.path.join(MODEL_ROOT, 'src'))
+    sys.path.insert(0, os.path.join(MODEL_ROOT, 'scripts'))
+    from dtpm.core.config import SimulationConfig
+    from dtpm.core.mesh import Mesh2D
+    from dtpm.core.geometry import build_geometry_mask
+
+    config = SimulationConfig(os.path.join(MODEL_ROOT, 'config', 'default_config.yaml'))
+    geom = _reactor_geometry(config)
+    L_total = geom['L_proc'] + geom['L_apt'] + geom['L_icp']
+    mesh = Mesh2D(R=geom['R_proc'], L=L_total, Nr=geom['Nr'], Nz=geom['Nz'],
+                  beta_r=geom['beta_r'], beta_z=geom['beta_z'])
+    R_wafer = float(geom.get('R_wafer', 0.075))
+    inside, _bc = build_geometry_mask(
+        mesh, geom['R_icp'], geom['R_proc'],
+        geom['L_proc'], geom['L_proc'] + geom['L_apt'], L_total,
+        R_wafer=R_wafer,
+    )
+    _MESH_CACHE = (mesh.rc, mesh.zc, inside.astype(bool))
+    return _MESH_CACHE
+
+
 def get_mesh() -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     return _load_mesh()
 

@@ -529,6 +529,48 @@ try:
 except (OSError, KeyError, ValueError) as _e:
     recon.append("could not compare: %s" % _e)
 check("weights load and match the published metrics", not recon, "; ".join(recon[:3]))
+# --- the training path advertised in ml/README must actually run ------------
+# ml/README says everything needed to re-train is here. A loader whose mesh builder
+# had been truncated made that false while every other check still passed, so this
+# imports both loaders and requires a real mesh back.
+train_bad = []
+_saved_path, _saved_mods = list(sys.path), set(sys.modules)
+try:
+    _2s = os.path.join(ROOT, "ml", "two_species", "scripts")
+    _as = os.path.join(ROOT, "ml", "all_species", "scripts")
+    sys.path.insert(0, _2s)
+    try:
+        import ml_dataset_loader as _mdl
+        _mesh = _mdl.get_mesh()
+        if not (isinstance(_mesh, tuple) and len(_mesh) == 3):
+            train_bad.append("two-species loader: get_mesh() returned %r" % type(_mesh).__name__)
+        else:
+            _rc, _zc, _in = _mesh
+            if _in.shape != (len(_rc), len(_zc)):
+                train_bad.append("two-species loader: mask %s does not match mesh %s"
+                                 % (_in.shape, (len(_rc), len(_zc))))
+            elif not _in.any():
+                train_bad.append("two-species loader: no active cells")
+    except Exception as _e:
+        train_bad.append("two-species loader: %s: %s" % (type(_e).__name__, _e))
+    sys.path.insert(0, _as)
+    try:
+        import species_loader as _sl            # noqa: F401  (import must simply work)
+    except Exception as _e:
+        train_bad.append("21-channel loader: %s: %s" % (type(_e).__name__, _e))
+    # provenance must be recorded from real state, never a fixed string
+    for _rel in ("ml/two_species/scripts/train_ensemble.py",
+                 "ml/all_species/scripts/train_species.py"):
+        _src = open(os.path.join(ROOT, _rel), encoding="utf-8").read()
+        if re.search(r"['\"]rate_source['\"]\s*:\s*['\"]", _src):
+            train_bad.append("%s writes a fixed rate_source" % os.path.basename(_rel))
+finally:
+    sys.path[:] = _saved_path
+    for _m in set(sys.modules) - _saved_mods:
+        sys.modules.pop(_m, None)
+check("the advertised training path imports and builds a mesh", not train_bad,
+      "; ".join(train_bad[:2]))
+
 print("=" * 74)
 print("%d check(s) failed" % len(fail) if fail else "all checks passed")
 sys.exit(1 if fail else 0)
