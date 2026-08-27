@@ -39,10 +39,11 @@ source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate dtpm-lxcat
 set -u
 
-# Dataset mode. The 21-channel trainer hard-codes lxcat at ml/all_species/scripts/
-# train_species.py:155, so this job is lxcat by construction, not by convention.
-# Exporting ML_DATASET_MODE does NOT change what train_species.py loads.
-export ML_DATASET_MODE="${ML_DATASET_MODE:-lxcat}"
+# Dataset mode. The trainer reads ML_DATASET_MODE and records it as rate_source in
+# each summary.json, so the corpus a run used is recoverable from its own output.
+# The deployed 21-channel weights were trained with legacy, the Maxwellian-averaged
+# (Lallement) rate set.
+export ML_DATASET_MODE="${ML_DATASET_MODE:-legacy}"
 export OMP_NUM_THREADS=4
 export MKL_NUM_THREADS=4
 

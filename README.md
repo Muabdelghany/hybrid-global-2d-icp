@@ -92,8 +92,8 @@ The paper reports results under one closure: a steady electron-energy transport 
 outer Picard loop on the absorbed power fraction, per-cell rate coefficients, and a wall
 recombination coefficient γ_Al = 0.155. Directories named `*_prior_closure` hold the same runs
 made under the earlier treatment, a local electron-temperature balance with γ_Al = 0.18. They
-are included because two comparisons in the paper are between the two, and because figure 17's
-published curve was drawn from the earlier reference case.
+are included because two comparisons in the paper are between the two closures. No figure in
+the paper is drawn from them.
 
 Unless a filename says `prior_closure`, the data is from the production closure.
 
@@ -216,5 +216,6 @@ repository.
 ## Citing
 
 Cite the paper; `CITATION.cff` carries the metadata. To refer to this repository specifically,
-cite the archived deposit: **10.5281/zenodo.22116275**, which resolves to the latest version.
-The release accompanying the paper is **10.5281/zenodo.22116276**.
+cite the archived deposit: **10.5281/zenodo.22116275**. That is the concept DOI, and it always
+resolves to the latest version, which is what the paper cites. Each release also has its own
+version DOI if you need to pin an exact snapshot.

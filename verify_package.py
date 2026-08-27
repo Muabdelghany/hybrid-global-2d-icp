@@ -12,6 +12,11 @@ model/VERIFICATION_CASE.json.
 """
 import collections, hashlib, os, re, shutil, subprocess, sys
 
+# A later check imports the solver package. Without this, that import writes
+# __pycache__ into model/src and the build-junk check fails on the NEXT run,
+# so a clean extraction would pass once and then fail.
+sys.dont_write_bytecode = True
+
 def walk(root):
     """os.walk with .git pruned. Git's object store is not payload: it differs between
     any two clones of the same tree and would otherwise produce phantom findings."""
@@ -470,32 +475,60 @@ else:
 check("shipped mesh matches the solver", not _mesh_bad, "; ".join(_mesh_bad[:2]))
 
 # --- deployed weights reconcile with the metrics the paper reports ----------
-# The archive ships checkpoints AND the metrics the paper quotes. If a superseded
-# generation of weights is ever staged here, the two stop agreeing, which is exactly
-# the failure this check exists to catch.
+# The archive ships checkpoints AND the metrics the paper quotes. Comparing the two
+# JSON files alone would pass even if every .pt were replaced with junk, so this also
+# opens each checkpoint and checks it is a loadable state dict of the right shape.
 import json as _json
 recon = []
 try:
     _sm = _json.load(open(os.path.join(ROOT, "data/surrogate/split_manifest.json")))
     _want = _sm["sanity_rmse_ensemble_mean"]
-    _got = _json.load(open(os.path.join(
-        ROOT, "ml/two_species/ensembles/ml_production_ensemble_legacy/summary.json")))["metrics"]
+    _2sp = os.path.join(ROOT, "ml/two_species/ensembles/ml_production_ensemble_legacy")
+    _got = _json.load(open(os.path.join(_2sp, "summary.json")))["metrics"]
     for _sp in ("nF", "nSF6"):
         if abs(_got[_sp]["rmse"] - _want[_sp]) > 1e-9:
             recon.append("two-species %s: %.9f vs %.9f" % (_sp, _got[_sp]["rmse"], _want[_sp]))
     _ch = _json.load(open(os.path.join(ROOT, "data/surrogate/ml21_channel_metrics.json")))
+    _a21 = os.path.join(ROOT, "ml/all_species/ensembles/ml_production_ensemble_all_species")
     for _sp, _v in _ch.items():
-        _f = os.path.join(ROOT, "ml/all_species/ensembles/ml_production_ensemble_all_species",
-                          _sp, "summary.json")
+        _f = os.path.join(_a21, _sp, "summary.json")
         if not os.path.exists(_f):
             recon.append("channel %s: summary missing" % _sp); continue
-        _r = _json.load(open(_f))["metrics"]["rmse"]
-        if abs(_r - _v["rmse"]) > 1e-9:
-            recon.append("channel %s: %.9f vs %.9f" % (_sp, _r, _v["rmse"]))
+        if abs(_json.load(open(_f))["metrics"]["rmse"] - _v["rmse"]) > 1e-9:
+            recon.append("channel %s metric mismatch" % _sp)
+    # every advertised checkpoint must actually load and carry real parameters
+    try:
+        import torch as _torch
+        _seen = set()
+        for _d in [_2sp] + [os.path.join(_a21, s) for s in sorted(_ch)]:
+            _pts = sorted(f for f in os.listdir(_d) if f.endswith(".pt"))
+            if len(_pts) != 5:
+                recon.append("%s: %d checkpoints, expected 5" % (os.path.basename(_d), len(_pts)))
+            for _n in _pts:
+                _p = os.path.join(_d, _n)
+                try:
+                    _sd = _torch.load(_p, map_location="cpu", weights_only=True)
+                except Exception as _le:            # unreadable file must FAIL, not crash
+                    recon.append("%s/%s: will not load (%s)"
+                                 % (os.path.basename(_d), _n, type(_le).__name__))
+                    continue
+                if not isinstance(_sd, dict) or not _sd:
+                    recon.append("%s/%s: not a state dict" % (os.path.basename(_d), _n)); continue
+                _tot = sum(v.numel() for v in _sd.values() if hasattr(v, "numel"))
+                if _tot < 1000:
+                    recon.append("%s/%s: only %d parameters" % (os.path.basename(_d), _n, _tot))
+                if not all(bool(_torch.isfinite(v).all()) for v in _sd.values()
+                           if hasattr(v, "isfinite") and v.is_floating_point()):
+                    recon.append("%s/%s: non-finite weights" % (os.path.basename(_d), _n))
+                _h = hashlib.sha256(open(_p, "rb").read()).hexdigest()
+                if _h in _seen:
+                    recon.append("%s/%s: duplicate of another checkpoint" % (os.path.basename(_d), _n))
+                _seen.add(_h)
+    except ImportError:
+        recon.append("torch unavailable, checkpoints not opened")
 except (OSError, KeyError, ValueError) as _e:
     recon.append("could not compare: %s" % _e)
-check("deployed weights match the published metrics", not recon, "; ".join(recon[:3]))
-
+check("weights load and match the published metrics", not recon, "; ".join(recon[:3]))
 print("=" * 74)
 print("%d check(s) failed" % len(fail) if fail else "all checks passed")
 sys.exit(1 if fail else 0)

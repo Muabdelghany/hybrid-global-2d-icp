@@ -1,7 +1,7 @@
 """Single-head version of E3_separate_heads for per-species training.
 
 Identical shared trunk (3 × 128 wide GELU + dropout 0.05) and Fourier-feature
-encoder as the two-species SeparateHeadsMLP, but with a single 2-layer 64-wide head
+encoder as 6b's SeparateHeadsMLP, but with a single 2-layer 64-wide head
 producing one output. Bias-init is parameterised per species (the
 log-mean of the training data for that field).
 """

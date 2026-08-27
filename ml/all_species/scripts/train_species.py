@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Per-species 5-model ensemble trainer for 6c.
 
-Mirrors the two-species train_ensemble.py training loop (Adam, cosine-anneal,
+Mirrors 6b's train_ensemble.py training loop (Adam, cosine-anneal,
 2000 epochs, smoothness + bounded-density + wafer-smoothness regularizers,
 weighted-σ-normalised MSE) but with a SingleHeadMLP and a one-column
 target. Trains 5 seeds, saves model_{0..4}.pt + summary.json + config.json
@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+_ML_MODE = os.environ.get("ML_DATASET_MODE", "legacy")  # dataset mode: was hardcoded lxcat (caught 2026-07-20)
 import sys
 import time
 
@@ -152,7 +153,7 @@ def main():
 
     print("==> Loading dataset…", flush=True)
     train_d, val_d, meta, vi = load_species_dataset(
-        species, mode="lxcat", val_frac=0.15)
+        species, mode=_ML_MODE, val_frac=0.15)
     print(f"  train cells: {len(train_d['r'])}; "
           f"val cells: {len(val_d['r'])}; cases: {len(meta)}", flush=True)
 
@@ -221,7 +222,7 @@ def main():
     }
     summary = {
         "species": species,
-        "label": f"surrogate_lxcat_v4_arch_{species}",
+        "label": f"surrogate_{_ML_MODE}_v4_arch_{species}",
         "winner_experiment": "E3_separate_heads (single-head)",
         "architecture": "SingleHeadMLP (3×128 trunk + skip + 2×64 head)",
         "training_recipe": "v4 per-species (physics reg + bias init + 2000 epochs)",
@@ -234,7 +235,7 @@ def main():
         "ens_mean": float(np.mean(val_losses)),
         "ens_std": float(np.std(val_losses)),
         "metrics": metrics,
-        "rate_source": "lxcat",
+        "rate_source": _ML_MODE,
         "output_bias_init": output_bias,
     }
     with open(summary_path, "w") as f:

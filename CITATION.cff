@@ -26,10 +26,10 @@ doi: "10.5281/zenodo.22116275"
 identifiers:
   - type: doi
     value: "10.5281/zenodo.22116275"
-    description: "Concept DOI, resolving to the latest version"
+    description: "Concept DOI, resolving to the latest version; cite this one"
   - type: doi
-    value: "10.5281/zenodo.22116276"
-    description: "The v1.0 release accompanying the paper"
+    value: "10.5281/zenodo.22122029"
+    description: "The v1.1 release"
 keywords:
   - inductively coupled plasma
   - plasma etching

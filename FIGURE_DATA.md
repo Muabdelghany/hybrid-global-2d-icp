@@ -14,7 +14,7 @@ were drawn from.
 | 4 | Coupling schematic | — | drawn inline in the manuscript |
 | 5 | Picard iteration flowchart | — | schematic, no data |
 | 6 | Azimuthal E-field and power deposition | data/reference_case/ (E_theta_rms.npy, P_rz.npy) | field maps |
-| 7 | Picard convergence history | data/plotted_values/figure07/ | raw: data/picard_convergence/ |
+| 7 | Picard convergence history | data/plotted_values/figure07/ | raw: the `convergence_history` block of data/reference_case/summary.json (26 iterations) |
 | 8 | Coil-resistance sweep | data/plotted_values/figure08/ | raw: data/coil_resistance_sweep/ |
 | 9 | Plasma state, six panels | data/reference_case/ | field maps: ion_*.npy, Te.npy, nF.npy |
 | 10 | Neutral density maps | data/reference_case/ | field maps: n*.npy, ne.npy |
@@ -24,7 +24,7 @@ were drawn from.
 | 14 | Ambipolar closure comparison | data/plotted_values/figure14/ | raw: data/ambipolar_comparison/ |
 | 15 | Power scalings | data/plotted_values/figure15/ | raw: data/parameter_sweeps/power_1000W_biased/ |
 | 16 | Power and pressure sweeps | data/plotted_values/figure16/ | raw: data/parameter_sweeps/ |
-| 17 | Wafer-plane [F]: 2D against 0D and measurement | data/plotted_values/figure17/ | raw: data/reference_case_prior_closure/ + data/measurements/ |
+| 17 | Wafer-plane [F]: 2D against 0D and measurement | data/plotted_values/figure17/ | raw: data/reference_case/ + data/measurements/ |
 | 18 | Mesh convergence | data/plotted_values/figure18/ | raw: data/mesh_convergence/ |
 | 19 | Network architecture | — | schematic, no data |
 | 20 | Surrogate recipe ablation | data/plotted_values/figure20/ | raw: data/surrogate/ablation_results_*.json |
@@ -46,6 +46,7 @@ The mesh is defined in `model/config/default_config.yaml`.
 **CSV format.** One file per figure panel. The first column is the abscissa; each remaining
 column is one plotted series, named for its legend entry, with units in the header.
 
-**Prior closure.** Figure 17's published curve comes from the earlier-closure reference case,
-which is why its underlying data is `data/reference_case_prior_closure/`. The README explains
-the two closures.
+**Prior closure.** Directories ending `_prior_closure` hold runs made under the earlier
+local-balance electron-temperature closure with γ_Al = 0.18. No figure in the paper is drawn
+from them; they are kept so the closure comparisons in the text can be repeated. The README
+explains the two closures.

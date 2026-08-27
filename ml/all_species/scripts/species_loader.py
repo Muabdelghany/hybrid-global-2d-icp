@@ -1,8 +1,8 @@
-"""Single-species dataset loader for the per-channel surrogate.
+"""Single-species dataset loader for 6c.
 
-Reuses the two-species mesh and manifest plumbing, then stacks one log10(species) target
-column (rather than the two-species 2-column lnF + lnSF6).  Returns the same 4-tuple
-shape as the two-species loader so train_species.py can swap in for train_ensemble.py
+Reuses 6b's mesh + manifest plumbing, then stacks one log10(species) target
+column (rather than 6b's 2-column lnF + lnSF6).  Returns the same 4-tuple
+shape as 6b's loader so train_species.py can swap in for train_ensemble.py
 with minimal changes.
 """
 from __future__ import annotations
@@ -14,24 +14,25 @@ from typing import Tuple
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-# In the original layout this reached across the
-# pipeline tree to the two-species scripts/ml directory, a path
-# that no longer exists. In this package the two-species loader sits beside us.
-SIXB_ML = os.path.abspath(os.path.join(HERE, "..", "..", "two_species", "scripts"))
+# V7: use THIS project's loader (6d) so the dataset resolves to the V7
+# legacy set (gamma*=0.155 + f_e closure), not 6b's old-physics tree.
+SIXB_ML = os.path.abspath(os.path.join(HERE, "..", "ml"))
 if SIXB_ML not in sys.path:
     sys.path.insert(0, SIXB_ML)
 import ml_dataset_loader as mdl  # noqa: E402
 
 
-def load_species_dataset(species: str, mode: str = "lxcat",
+def load_species_dataset(species: str, mode: str = None,
                          val_frac: float = 0.15
                          ) -> Tuple[dict, dict, list, set]:
     """Load a per-cell single-species dataset.
 
     Mirrors mdl.load_dataset() but stacks one target column
     'ln<species>' = log10(field, clipped to >= 1) instead of lnF + lnSF6.
-    Same seed=42 case-level train/validation split as the two-species loader.
+    Same seed=42 case-level train/val split as 6b.
     """
+    if mode is None:
+        mode = os.environ.get("ML_DATASET_MODE", "legacy")
     manifest = mdl._manifest_for_mode(mode)
     runs = manifest["runs"]
     for i, r in enumerate(runs):
